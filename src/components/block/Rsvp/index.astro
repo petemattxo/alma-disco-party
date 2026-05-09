@@ -114,10 +114,18 @@ const partyNotes = [
       <button
         type="submit"
         class="mt-5 flex h-16 w-full cursor-pointer items-center justify-center gap-4 rounded-xl border border-pulse/80 bg-pulse px-5 font-copy text-[clamp(1.08rem,1.6vw,1.48rem)] leading-none font-normal tracking-[0.08em] text-invitation-cream shadow-[0_0_20px_rgba(255,107,122,0.1344),inset_0_0_0_1px_rgba(253,239,206,0.18)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)]"
+        data-rsvp-submit
       >
         <span aria-hidden="true" data-parallax="0.55">✦</span>
-        Send my reply
+        <span data-rsvp-submit-label>Send my reply</span>
       </button>
+
+      <p
+        class="mt-4 hidden text-center font-copy text-base leading-tight font-normal text-pulse"
+        role="alert"
+        data-rsvp-error
+      >
+      </p>
     </form>
 
     <div
@@ -286,6 +294,9 @@ const partyNotes = [
   const rsvpSuccess = document.querySelector("[data-rsvp-success]")
   const rsvpDecline = document.querySelector("[data-rsvp-decline]")
   const rsvpMobile = document.querySelector("[data-rsvp-mobile]")
+  const rsvpSubmit = document.querySelector("[data-rsvp-submit]")
+  const rsvpSubmitLabel = document.querySelector("[data-rsvp-submit-label]")
+  const rsvpError = document.querySelector("[data-rsvp-error]")
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
   const isPhilippineMobileNumber = (value: string) => {
@@ -369,11 +380,34 @@ const partyNotes = [
     message.classList.add("grid")
   }
 
+  const setSubmitState = (isSubmitting: boolean) => {
+    if (rsvpSubmit instanceof HTMLButtonElement) rsvpSubmit.disabled = isSubmitting
+    if (rsvpSubmitLabel instanceof HTMLElement)
+      rsvpSubmitLabel.textContent = isSubmitting ? "Sending..." : "Send my reply"
+  }
+
+  const showSubmitError = (message: string) => {
+    if (!(rsvpError instanceof HTMLElement)) return
+
+    rsvpError.textContent = message
+    rsvpError.classList.remove("hidden")
+  }
+
+  const clearSubmitError = () => {
+    if (!(rsvpError instanceof HTMLElement)) return
+
+    rsvpError.textContent = ""
+    rsvpError.classList.add("hidden")
+  }
+
   if (rsvpForm instanceof HTMLFormElement && rsvpSuccess instanceof HTMLElement && rsvpDecline instanceof HTMLElement) {
     rsvpMobile?.addEventListener("input", validateMobileNumber)
     rsvpMobile?.addEventListener("blur", validateMobileNumber)
 
-    rsvpForm.addEventListener("submit", (event) => {
+    rsvpForm.addEventListener("submit", async (event) => {
+      event.preventDefault()
+      clearSubmitError()
+
       if (!validateMobileNumber()) {
         event.preventDefault()
         if (rsvpMobile instanceof HTMLInputElement) rsvpMobile.reportValidity()
@@ -383,7 +417,30 @@ const partyNotes = [
       const formData = new FormData(rsvpForm)
       const isAttending = formData.get("attending") === "yes"
 
-      event.preventDefault()
+      setSubmitState(true)
+
+      try {
+        const response = await fetch("/api/rsvp", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        })
+
+        if (!response.ok) {
+          const result = await response.json().catch(() => null)
+          const message =
+            typeof result?.error === "string" ? result.error : "Your RSVP could not be sent. Please try again."
+          showSubmitError(message)
+          return
+        }
+      } catch {
+        showSubmitError("Your RSVP could not be sent. Please check your connection and try again.")
+        return
+      } finally {
+        setSubmitState(false)
+      }
 
       if (isAttending) {
         showRsvpMessage(rsvpSuccess)
