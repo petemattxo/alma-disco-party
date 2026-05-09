@@ -1,0 +1,3 @@
+N8N_WEBHOOK_URL="https://example.app.n8n.cloud/webhook/your-webhook-path"
+N8N_BASIC_AUTH_USER="your-basic-auth-user"
+N8N_BASIC_AUTH_PASSWORD="your-basic-auth-password"
