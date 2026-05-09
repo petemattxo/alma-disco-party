@@ -41,5 +41,9 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.4",
     "typescript": "~5.9.3"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.60.3",
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.2.4"
   }
 }
