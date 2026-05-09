@@ -19,10 +19,12 @@ const countdownUnits = [
     badge: "bg-transparent",
   },
 ]
+
+const countdownTarget = "2026-06-03T18:00:00+08:00"
 ---
 
-<AppSection sectionId="countdown" wrapperClass="overflow-hidden bg-page" class="py-12 lg:py-16">
-  <div class="mb-7 flex items-center gap-5 text-groove-mauve sm:gap-7">
+<AppSection sectionId="countdown" wrapperClass="overflow-hidden bg-page" class="py-12 lg:py-16" data-countdown-section>
+  <div class="mb-7 flex items-center gap-5 text-groove-mauve sm:gap-7" data-scroll-reveal>
     <span
       class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
       aria-hidden="true"
@@ -45,6 +47,7 @@ const countdownUnits = [
 
   <div
     class="relative rounded-[1.8rem] border border-[#d8b8b1]/80 bg-[#11101b] p-2 shadow-[0_0_0_2px_rgba(216,184,177,0.22),0_16px_44px_rgba(0,0,0,0.45)]"
+    data-scroll-reveal="zoom"
   >
     <svg
       class="absolute top-3 left-3 h-5 w-5 text-[#d8b8b1]/70 drop-shadow-[0_0_5px_rgba(216,184,177,0.38)] sm:h-6 sm:w-6"
@@ -112,7 +115,7 @@ const countdownUnits = [
           </svg>
         </div>
 
-        <div class="grid w-full gap-4 lg:grid-cols-4" data-countdown data-target="2026-06-03T18:00:00+08:00">
+        <div class="grid w-full gap-4 lg:grid-cols-4" data-countdown data-target={countdownTarget}>
           {
             countdownUnits.map((unit) => (
               <div class="text-center">
@@ -120,7 +123,7 @@ const countdownUnits = [
                   class={`rounded-lg border ${unit.border} bg-[#121421] px-3 py-3 shadow-[inset_0_0_18px_rgba(0,0,0,0.7)]`}
                 >
                   <span
-                    class={`block font-copy text-[clamp(3.2rem,7vw,5.45rem)] leading-none font-normal tracking-[0.08em] tabular-nums ${unit.color} [text-shadow:0_0_8.4px_currentColor]`}
+                    class={`block font-limelight text-[clamp(3.2rem,7vw,5.45rem)] leading-none font-normal tracking-[0.08em] tabular-nums ${unit.color} [text-shadow:0_0_8.4px_currentColor]`}
                     data-countdown-value={unit.key}
                   >
                     00
@@ -154,11 +157,76 @@ const countdownUnits = [
           </svg>
         </div>
       </div>
+      <div class="hidden px-3 pt-5 pb-1 text-center sm:px-6 sm:pt-6" data-countdown-party-note aria-live="polite">
+        <p
+          class="font-countdown-heading text-[clamp(1rem,2.3vw,1.85rem)] leading-tight font-extrabold tracking-[0.18em] text-groove-orange uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9),0_0_14px_rgba(231,121,67,0.32)]"
+        >
+          The party is happening now!
+        </p>
+      </div>
     </div>
   </div>
   <script>
+    const countdownSection = document.querySelector("[data-countdown-section]")
     const countdown = document.querySelector("[data-countdown]")
+    const partyNote = document.querySelector("[data-countdown-party-note]")
     const formatCountdownValue = (value) => String(value).padStart(2, "0")
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+    const launchCountdownConfetti = () => {
+      if (reduceMotion.matches) return
+
+      const canvas = document.createElement("canvas")
+      const context = canvas.getContext("2d")
+      if (!context) return
+
+      const colors = ["#ff6b7a", "#f6c96b", "#7ce7f2", "#9a5f90", "#fdefce"]
+      const particles = Array.from({ length: 150 }, () => ({
+        x: window.innerWidth * (0.18 + Math.random() * 0.64),
+        y: window.innerHeight * (0.22 + Math.random() * 0.18),
+        size: Math.random() * 7 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        velocityX: (Math.random() - 0.5) * 10,
+        velocityY: Math.random() * -8 - 3,
+        gravity: Math.random() * 0.14 + 0.16,
+        rotation: Math.random() * Math.PI,
+        spin: (Math.random() - 0.5) * 0.3,
+      }))
+
+      canvas.className = "pointer-events-none fixed inset-0 z-[100]"
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      document.body.append(canvas)
+
+      let frame = 0
+      const animate = () => {
+        frame += 1
+        context.clearRect(0, 0, canvas.width, canvas.height)
+
+        particles.forEach((particle) => {
+          particle.x += particle.velocityX
+          particle.y += particle.velocityY
+          particle.velocityY += particle.gravity
+          particle.rotation += particle.spin
+
+          context.save()
+          context.translate(particle.x, particle.y)
+          context.rotate(particle.rotation)
+          context.fillStyle = particle.color
+          context.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size * 0.55)
+          context.restore()
+        })
+
+        if (frame < 120) {
+          window.requestAnimationFrame(animate)
+          return
+        }
+
+        canvas.remove()
+      }
+
+      animate()
+    }
 
     if (countdown instanceof HTMLElement) {
       const target = new Date(countdown.dataset.target || "2026-06-03T18:00:00+08:00").getTime()
@@ -167,6 +235,19 @@ const countdownUnits = [
         hours: countdown.querySelector('[data-countdown-value="hours"]'),
         minutes: countdown.querySelector('[data-countdown-value="minutes"]'),
         seconds: countdown.querySelector('[data-countdown-value="seconds"]'),
+      }
+      let isExpired = false
+      let hasLaunchedConfetti = false
+      let isCountdownVisible = !("IntersectionObserver" in window)
+
+      const showPartyNote = () => {
+        if (partyNote instanceof HTMLElement) partyNote.classList.remove("hidden")
+      }
+
+      const launchConfettiIfReady = () => {
+        if (!isExpired || !isCountdownVisible || hasLaunchedConfetti) return
+        hasLaunchedConfetti = true
+        launchCountdownConfetti()
       }
 
       const updateCountdown = () => {
@@ -180,10 +261,32 @@ const countdownUnits = [
         if (values.hours) values.hours.textContent = formatCountdownValue(hours)
         if (values.minutes) values.minutes.textContent = formatCountdownValue(minutes)
         if (values.seconds) values.seconds.textContent = formatCountdownValue(seconds)
+
+        if (distance === 0) {
+          isExpired = true
+          showPartyNote()
+          launchConfettiIfReady()
+        }
       }
 
       updateCountdown()
-      window.setInterval(updateCountdown, 1_000)
+      const interval = window.setInterval(() => {
+        updateCountdown()
+        if (isExpired) window.clearInterval(interval)
+      }, 1_000)
+
+      if ("IntersectionObserver" in window && countdownSection instanceof HTMLElement) {
+        const countdownObserver = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return
+            isCountdownVisible = true
+            launchConfettiIfReady()
+          },
+          { threshold: 0.45 },
+        )
+
+        countdownObserver.observe(countdownSection)
+      }
     }
   </script>
 </AppSection>

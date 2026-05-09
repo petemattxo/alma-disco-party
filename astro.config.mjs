@@ -101,6 +101,13 @@ export default defineConfig({
       weights: [800],
       styles: ["normal"],
     },
+    {
+      provider: fontProviders.google(),
+      name: "Limelight",
+      cssVariable: "--font-limelight",
+      weights: [400],
+      styles: ["normal"],
+    },
   ],
   vite: {
     plugins: [tailwindcss()],

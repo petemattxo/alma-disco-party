@@ -18,6 +18,7 @@ const partyNotes = [
     <form
       class="rounded-[1.35rem] border-2 border-[#d8b8b1]/75 bg-[#0d0e19] p-6 shadow-[0_0_0_1px_rgba(216,184,177,0.18),0_18px_50px_rgba(0,0,0,0.42)] sm:p-8"
       data-rsvp-form
+      data-scroll-reveal="left"
     >
       <h2
         class="text-center font-rsvp text-[clamp(2.7rem,5.4vw,5rem)] leading-none font-normal tracking-[0.08em] text-groove-coral uppercase [text-shadow:0_3px_0_rgba(8,9,13,0.9),0_0_14px_rgba(223,92,99,0.48)]"
@@ -28,7 +29,7 @@ const partyNotes = [
       <p
         class="mt-2 mb-5 text-center font-copy text-[clamp(1rem,1.45vw,1.35rem)] leading-tight font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
       >
-        Please confirm if you can come.
+        Please confirm if you can come by May 31.
       </p>
 
       <div class="grid gap-3 sm:grid-cols-2">
@@ -112,19 +113,11 @@ const partyNotes = [
 
       <button
         type="submit"
-        class="mt-5 flex h-16 w-full cursor-pointer items-center justify-center gap-4 rounded-xl border border-pulse/80 bg-pulse px-5 font-copy text-[clamp(1.08rem,1.6vw,1.48rem)] leading-none font-normal tracking-[0.08em] text-invitation-cream shadow-[0_0_20px_rgba(255,107,122,0.1344),inset_0_0_0_1px_rgba(253,239,206,0.18)] transition-[transform,box-shadow,filter,opacity] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)] disabled:cursor-not-allowed disabled:opacity-70"
-        data-rsvp-submit
+        class="mt-5 flex h-16 w-full cursor-pointer items-center justify-center gap-4 rounded-xl border border-pulse/80 bg-pulse px-5 font-copy text-[clamp(1.08rem,1.6vw,1.48rem)] leading-none font-normal tracking-[0.08em] text-invitation-cream shadow-[0_0_20px_rgba(255,107,122,0.1344),inset_0_0_0_1px_rgba(253,239,206,0.18)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)]"
       >
         <span aria-hidden="true" data-parallax="0.55">✦</span>
-        <span data-rsvp-submit-label>Send my reply</span>
+        Send my reply
       </button>
-
-      <p
-        class="mt-4 hidden text-center font-copy text-base leading-tight font-normal text-pulse"
-        role="alert"
-        data-rsvp-error
-      >
-      </p>
     </form>
 
     <div
@@ -255,6 +248,7 @@ const partyNotes = [
     <aside
       class="rounded-[1.35rem] border-2 border-groove-teal/75 bg-[#0d0e19] p-6 shadow-[0_0_0_1px_rgba(108,168,173,0.18),0_18px_50px_rgba(0,0,0,0.42)] sm:p-8"
       aria-labelledby="party-notes-heading"
+      data-scroll-reveal="right"
     >
       <h2
         id="party-notes-heading"
@@ -283,8 +277,7 @@ const partyNotes = [
   <p
     class="mt-6 text-center font-copy text-[clamp(1rem,1.45vw,1.3rem)] leading-tight font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
   >
-    Contact Marilou Cortes at <span class="inline-block min-w-28 border-b border-invitation-cream/70 align-baseline"
-    ></span> for questions &amp; concerns.
+    Contact Marilou Cortes at +63 969 605 9229 for questions &amp; concerns.
   </p>
 </AppSection>
 
@@ -293,9 +286,6 @@ const partyNotes = [
   const rsvpSuccess = document.querySelector("[data-rsvp-success]")
   const rsvpDecline = document.querySelector("[data-rsvp-decline]")
   const rsvpMobile = document.querySelector("[data-rsvp-mobile]")
-  const rsvpSubmit = document.querySelector("[data-rsvp-submit]")
-  const rsvpSubmitLabel = document.querySelector("[data-rsvp-submit-label]")
-  const rsvpError = document.querySelector("[data-rsvp-error]")
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
   const isPhilippineMobileNumber = (value: string) => {
@@ -379,35 +369,13 @@ const partyNotes = [
     message.classList.add("grid")
   }
 
-  const setSubmitState = (isSubmitting: boolean) => {
-    if (rsvpSubmit instanceof HTMLButtonElement) rsvpSubmit.disabled = isSubmitting
-    if (rsvpSubmitLabel instanceof HTMLElement)
-      rsvpSubmitLabel.textContent = isSubmitting ? "Sending..." : "Send my reply"
-  }
-
-  const showSubmitError = (message: string) => {
-    if (!(rsvpError instanceof HTMLElement)) return
-
-    rsvpError.textContent = message
-    rsvpError.classList.remove("hidden")
-  }
-
-  const clearSubmitError = () => {
-    if (!(rsvpError instanceof HTMLElement)) return
-
-    rsvpError.textContent = ""
-    rsvpError.classList.add("hidden")
-  }
-
   if (rsvpForm instanceof HTMLFormElement && rsvpSuccess instanceof HTMLElement && rsvpDecline instanceof HTMLElement) {
     rsvpMobile?.addEventListener("input", validateMobileNumber)
     rsvpMobile?.addEventListener("blur", validateMobileNumber)
 
-    rsvpForm.addEventListener("submit", async (event) => {
-      event.preventDefault()
-      clearSubmitError()
-
+    rsvpForm.addEventListener("submit", (event) => {
       if (!validateMobileNumber()) {
+        event.preventDefault()
         if (rsvpMobile instanceof HTMLInputElement) rsvpMobile.reportValidity()
         return
       }
@@ -415,30 +383,7 @@ const partyNotes = [
       const formData = new FormData(rsvpForm)
       const isAttending = formData.get("attending") === "yes"
 
-      setSubmitState(true)
-
-      try {
-        const response = await fetch("/api/rsvp", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(Object.fromEntries(formData)),
-        })
-
-        if (!response.ok) {
-          const result = await response.json().catch(() => null)
-          const message =
-            typeof result?.error === "string" ? result.error : "Your RSVP could not be sent. Please try again."
-          showSubmitError(message)
-          return
-        }
-      } catch {
-        showSubmitError("Your RSVP could not be sent. Please check your connection and try again.")
-        return
-      } finally {
-        setSubmitState(false)
-      }
+      event.preventDefault()
 
       if (isAttending) {
         showRsvpMessage(rsvpSuccess)

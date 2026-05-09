@@ -1,6 +1,6 @@
 ---
 import discoIcon from "@/assets/outfit/disco.png?url"
-import moneyBagIcon from "@/assets/icons/money_bag_icon.svg?url"
+import moneyBagIcon from "@/assets/icons/money-bag-icon.png?url"
 import outfitPopupImage from "@/assets/outfit/outfit-popup.png?url"
 import pantsIcon from "@/assets/outfit/pants.png?url"
 import shadesIcon from "@/assets/outfit/shades.png?url"
@@ -14,7 +14,7 @@ const outfitItems = [
     description: "Bright accents and bold colors",
     card: "bg-[#2c1f44] border-groove-mauve/90",
     glow: "shadow-[0_0_24px_rgba(163,91,147,0.34)]",
-    iconClass: "h-20 w-auto sm:h-24",
+    iconClass: "h-14 w-auto sm:h-24",
   },
   {
     icon: discoIcon,
@@ -22,7 +22,7 @@ const outfitItems = [
     description: "Sequins, glitter and shimmer",
     card: "bg-groove-teal border-cyan/70",
     glow: "shadow-[0_0_24px_rgba(108,168,173,0.34)]",
-    iconClass: "h-20 w-auto sm:h-24",
+    iconClass: "h-14 w-auto sm:h-24",
   },
   {
     icon: pantsIcon,
@@ -30,7 +30,7 @@ const outfitItems = [
     description: "Bell bottoms, wraps & prints",
     card: "bg-pulse border-groove-orange/80",
     glow: "shadow-[0_0_24px_rgba(255,107,122,0.3)]",
-    iconClass: "h-20 w-auto sm:h-24",
+    iconClass: "h-14 w-auto sm:h-24",
   },
   {
     icon: shoesIcon,
@@ -38,13 +38,13 @@ const outfitItems = [
     description: "Comfortable and retro shoes",
     card: "bg-[#2c1f44] border-groove-mauve/90",
     glow: "shadow-[0_0_24px_rgba(163,91,147,0.34)]",
-    iconClass: "h-20 w-auto sm:h-24",
+    iconClass: "h-14 w-auto sm:h-24",
   },
 ]
 ---
 
 <AppSection sectionId="outfit" wrapperClass="overflow-hidden bg-page" class="py-12 lg:py-16">
-  <div class="mb-2 flex items-center gap-5 text-groove-mauve sm:gap-7">
+  <div class="mb-2 flex items-center gap-5 text-groove-mauve sm:gap-7" data-scroll-reveal>
     <span
       class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
       aria-hidden="true"
@@ -65,38 +65,64 @@ const outfitItems = [
     >
   </div>
 
-  <div class="mb-5 text-center">
+  <div class="mb-5 text-center" data-scroll-reveal>
     <p
       class="font-copy text-[clamp(0.95rem,1.35vw,1.25rem)] leading-tight font-normal text-invitation-cream/85 [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
     >
       Come dressed for the dance floor!
     </p>
-    <p
-      class="mt-2 inline-flex items-center justify-center gap-3 font-copy text-[clamp(0.95rem,1.4vw,1.35rem)] leading-tight font-normal text-groove-orange [text-shadow:0_2px_0_rgba(8,9,13,0.9),0_0_10px_rgba(231,121,67,0.32)]"
-    >
-      <img
+    <div class="relative mx-auto mt-4 max-w-[48rem] px-12 sm:px-16">
+      <!-- <img
         src={moneyBagIcon}
         alt=""
         aria-hidden="true"
-        class="h-7 w-7 object-contain sm:h-8 sm:w-8"
-        data-parallax="0.75"
-      />
-      <span>Best 3 outfits win cash prizes</span>
-      <img
+        class="absolute top-1/2 left-0 z-20 h-10 w-10 -translate-y-1/2 object-contain drop-shadow-[0_0_10px_rgba(246,201,107,0.34)] sm:h-12 sm:w-12"
+      /> -->
+      <!-- <img
         src={moneyBagIcon}
         alt=""
         aria-hidden="true"
-        class="h-7 w-7 object-contain sm:h-8 sm:w-8"
-        data-parallax="0.75"
-      />
-    </p>
+        class="absolute top-1/2 right-0 z-20 h-10 w-10 -translate-y-1/2 object-contain drop-shadow-[0_0_10px_rgba(246,201,107,0.34)] sm:h-12 sm:w-12"
+      /> -->
+      <div
+        class="relative overflow-hidden rounded-full border-2 border-groove-orange/80 bg-[#0d0e19] px-4 py-3 shadow-[0_0_0_1px_rgba(231,121,67,0.14),0_0_24px_rgba(231,121,67,0.16),inset_0_0_18px_rgba(253,239,206,0.05)]"
+        aria-label="Dress to impress, cash prizes await. Top 3 outfits take home cash."
+      >
+        <div
+          class="pointer-events-none absolute inset-x-5 top-1 h-1 bg-[radial-gradient(circle,rgba(246,201,107,0.92)_1px,transparent_2px)] [background-size:18px_4px] motion-safe:animate-pulse"
+          aria-hidden="true"
+        >
+        </div>
+        <div
+          class="pointer-events-none absolute inset-x-5 bottom-1 h-1 bg-[radial-gradient(circle,rgba(246,201,107,0.72)_1px,transparent_2px)] [background-size:18px_4px] motion-safe:animate-pulse"
+          aria-hidden="true"
+        >
+        </div>
+        <div
+          class="outfit-prize-marquee relative z-10 flex w-max items-center gap-8 font-countdown-heading text-[clamp(0.82rem,1.35vw,1.18rem)] leading-none font-extrabold tracking-[0.12em] text-groove-orange uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.85),0_0_8px_rgba(231,121,67,0.24)]"
+          aria-hidden="true"
+        >
+          {
+            Array.from({ length: 2 }).map(() => (
+              <span class="flex shrink-0 items-center gap-3 sm:gap-4">
+                <span class="text-champagne">✦</span>
+                <span>Dress to impress, cash prizes await</span>
+                <span class="text-champagne">✦</span>
+                <span>Top 3 outfits take home cash</span>
+                <span class="text-champagne">✦</span>
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+  <div class="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4" data-scroll-stagger>
     {
       outfitItems.map((item) => (
-        <article class={`rounded-xl border-2 ${item.card} p-1 ${item.glow}`}>
-          <div class="flex min-h-[14.25rem] flex-col items-center justify-center rounded-lg border border-ink/45 px-4 py-5 text-center shadow-[inset_0_0_18px_rgba(255,255,255,0.08),inset_0_-16px_28px_rgba(8,9,13,0.18)]">
+        <article class={`rounded-xl border-2 ${item.card} p-1 ${item.glow}`} data-scroll-reveal="zoom">
+          <div class="flex min-h-[12rem] flex-col items-center justify-center rounded-lg border border-ink/45 px-3 py-4 text-center shadow-[inset_0_0_18px_rgba(255,255,255,0.08),inset_0_-16px_28px_rgba(8,9,13,0.18)] sm:min-h-[14.25rem] sm:px-4 sm:py-5">
             <img
               src={item.icon}
               alt=""
@@ -104,10 +130,10 @@ const outfitItems = [
               class={`${item.iconClass} mb-4 object-contain drop-shadow-[0_8px_10px_rgba(8,9,13,0.35)]`}
               data-parallax="0.75"
             />
-            <h3 class="font-countdown-heading text-[clamp(1rem,1.45vw,1.22rem)] leading-none font-extrabold tracking-[0.08em] text-invitation-cream uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.255)]">
+            <h3 class="font-countdown-heading text-[clamp(0.75rem,3vw,1rem)] leading-none font-extrabold tracking-[0.08em] text-invitation-cream uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.255)] sm:text-[clamp(1rem,1.45vw,1.22rem)]">
               {item.title}
             </h3>
-            <p class="mt-3 max-w-[11rem] font-copy text-[clamp(0.95rem,1.25vw,1.12rem)] leading-[1.22] font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.216)]">
+            <p class="mt-2 max-w-[9rem] font-copy text-[clamp(0.72rem,2.8vw,0.95rem)] leading-[1.25] font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.216)] sm:mt-3 sm:max-w-[11rem] sm:text-[clamp(0.95rem,1.25vw,1.12rem)] sm:leading-[1.22]">
               {item.description}
             </p>
           </div>

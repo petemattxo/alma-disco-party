@@ -8,6 +8,7 @@
   --font-family-heading: var(--font-inter-tight), "Inter Tight", var(--font-inter), system-ui, sans-serif;
   --font-family-rsvp: var(--font-cooper-black-local), "Cooper Black", "Arial Black", system-ui, sans-serif;
   --font-family-countdown-heading: var(--font-montserrat), Montserrat, var(--font-inter), system-ui, sans-serif;
+  --font-family-limelight: var(--font-limelight), Limelight, var(--font-inter), system-ui, sans-serif;
   --font-family-copy: var(--font-poppins), Poppins, var(--font-inter), system-ui, sans-serif;
   --font-family-sans: var(--font-inter), Inter, system-ui, sans-serif;
   --font-family-mono:
@@ -64,6 +65,7 @@
   --font-heading: var(--font-family-heading);
   --font-rsvp: var(--font-family-rsvp);
   --font-countdown-heading: var(--font-family-countdown-heading);
+  --font-limelight: var(--font-family-limelight);
   --font-copy: var(--font-family-copy);
   --font-display: var(--font-family-display);
   --font-script: var(--font-family-script);

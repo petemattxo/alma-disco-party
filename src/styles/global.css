@@ -17,6 +17,16 @@
     @apply scroll-smooth bg-background font-sans antialiased;
   }
 
+  @media (max-width: 639.98px) {
+    html {
+      font-size: 1.1rem;
+    }
+
+    :where(p, a, button, span, label, input, select, textarea, li, h1, h2, h3, h4, h5, h6) {
+      font-size: max(1rem, 1em);
+    }
+  }
+
   body {
     @apply grid min-h-svh grid-rows-[1fr_auto] bg-page text-foreground;
     font-weight: var(--font-weight-body);
@@ -56,6 +66,55 @@
     animation: global-sparkle-twinkle var(--sparkle-duration) ease-in-out forwards;
   }
 
+  .outfit-prize-marquee {
+    animation: outfit-prize-marquee 16s linear infinite;
+  }
+
+  .scroll-reveal-ready [data-scroll-reveal] {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translate3d(0, 2rem, 0) scale(0.98);
+    transition:
+      opacity 700ms ease,
+      filter 700ms ease,
+      transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, filter, transform;
+  }
+
+  .scroll-reveal-ready [data-scroll-reveal="left"] {
+    transform: translate3d(-2rem, 0, 0) scale(0.98);
+  }
+
+  .scroll-reveal-ready [data-scroll-reveal="right"] {
+    transform: translate3d(2rem, 0, 0) scale(0.98);
+  }
+
+  .scroll-reveal-ready [data-scroll-reveal="zoom"] {
+    transform: translate3d(0, 1rem, 0) scale(0.92);
+  }
+
+  .scroll-reveal-ready [data-scroll-reveal].is-revealed {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .scroll-reveal-ready [data-scroll-stagger] > [data-scroll-reveal]:nth-child(2) {
+    transition-delay: 90ms;
+  }
+
+  .scroll-reveal-ready [data-scroll-stagger] > [data-scroll-reveal]:nth-child(3) {
+    transition-delay: 180ms;
+  }
+
+  .scroll-reveal-ready [data-scroll-stagger] > [data-scroll-reveal]:nth-child(4) {
+    transition-delay: 270ms;
+  }
+
+  .scroll-reveal-ready [data-scroll-stagger] > [data-scroll-reveal]:nth-child(5) {
+    transition-delay: 360ms;
+  }
+
   [data-parallax] {
     --parallax-x: 0px;
     --parallax-y: 0px;
@@ -65,6 +124,107 @@
 
   span[data-parallax] {
     display: inline-block;
+  }
+
+  .hero-bg-entrance {
+    opacity: 0;
+    animation: hero-bg-entrance 1200ms ease-out 80ms both;
+  }
+
+  .hero-eyebrow-entrance,
+  .hero-title-entrance,
+  .hero-underline-entrance,
+  .hero-intro-entrance,
+  .hero-art-entrance {
+    opacity: 0;
+    filter: blur(2px);
+    will-change: opacity, filter, transform;
+  }
+
+  .hero-eyebrow-entrance {
+    animation: hero-copy-entrance 740ms cubic-bezier(0.16, 1, 0.3, 1) 160ms both;
+  }
+
+  .hero-title-entrance {
+    animation: hero-copy-entrance 840ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+  }
+
+  .hero-underline-entrance {
+    animation: hero-swipe-entrance 720ms cubic-bezier(0.16, 1, 0.3, 1) 460ms both;
+  }
+
+  .hero-intro-entrance {
+    animation: hero-copy-entrance 720ms cubic-bezier(0.16, 1, 0.3, 1) 560ms both;
+  }
+
+  .hero-art-entrance {
+    animation: hero-art-entrance 980ms cubic-bezier(0.16, 1, 0.3, 1) 300ms both;
+  }
+}
+
+@keyframes hero-bg-entrance {
+  from {
+    opacity: 0;
+    filter: blur(2px) saturate(0.92);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+  }
+}
+
+@keyframes hero-copy-entrance {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translate3d(-1rem, 1.35rem, 0) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes hero-swipe-entrance {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translate3d(-1.25rem, 0.55rem, 0) scaleX(0.55);
+    transform-origin: left center;
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scaleX(1);
+    transform-origin: left center;
+  }
+}
+
+@keyframes hero-art-entrance {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translate3d(1.2rem, 2rem, 0) scale(0.94) rotate(1.5deg);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes outfit-prize-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 1rem));
   }
 }
 
@@ -101,6 +261,23 @@
 
   .global-sparkle-field {
     display: none;
+  }
+
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .hero-bg-entrance,
+  .hero-eyebrow-entrance,
+  .hero-title-entrance,
+  .hero-underline-entrance,
+  .hero-intro-entrance,
+  .hero-art-entrance {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
   }
 }
 

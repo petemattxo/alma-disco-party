@@ -22,6 +22,7 @@ const metaImage = "/og-image.jpg"
     <Font cssVariable="--font-inter" preload />
     <Font cssVariable="--font-poppins" preload />
     <Font cssVariable="--font-montserrat" preload />
+    <Font cssVariable="--font-limelight" preload />
     <link rel="icon" type="image/png" href="/alma-logo.png" />
     <title>{metaTitle}</title>
     <meta name="description" content={metaDescription} />
@@ -118,6 +119,48 @@ const metaImage = "/og-image.jpg"
       }
 
       window.setInterval(spawnSparkle, 280)
+
+      const revealItems = Array.from(document.querySelectorAll("[data-scroll-reveal]")).filter(
+        (element): element is HTMLElement => element instanceof HTMLElement,
+      )
+
+      const revealAllItems = () => {
+        revealItems.forEach((item) => item.classList.add("is-revealed"))
+      }
+
+      const setupScrollReveal = () => {
+        if (!revealItems.length || reducedMotionQuery.matches) {
+          document.documentElement.classList.remove("scroll-reveal-ready")
+          revealAllItems()
+          return
+        }
+
+        document.documentElement.classList.add("scroll-reveal-ready")
+
+        if (!("IntersectionObserver" in window)) {
+          revealAllItems()
+          return
+        }
+
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return
+
+              entry.target.classList.add("is-revealed")
+              observer.unobserve(entry.target)
+            })
+          },
+          {
+            rootMargin: "0px 0px -12% 0px",
+            threshold: 0.12,
+          },
+        )
+
+        revealItems.forEach((item) => revealObserver.observe(item))
+      }
+
+      setupScrollReveal()
     </script>
   </body>
 </html>
