@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets"
+
+import almaLogo from "@/assets/brand/alma-logo.png"
+
+const navItems = [
+  { label: "Details", href: "#details" },
+  { label: "Outfit", href: "#outfit" },
+  { label: "Location", href: "#location" },
+]
+---
+
+<header
+  class="pointer-events-none fixed inset-x-0 top-0 z-50 border-b border-invitation-cream/10 bg-page/65 px-site-padding text-event-secondary shadow-[0_10px_30px_rgba(0,0,0,0.22)] backdrop-blur-md"
+>
+  <div class="section-container flex w-full items-center justify-between py-2">
+    <a
+      href="/"
+      class="pointer-events-auto relative shrink-0 transition-transform duration-200 hover:scale-105 focus-visible:scale-105 focus-visible:rounded-full"
+      aria-label="Alma's 60th Disco Party home"
+      data-logo-confetti
+    >
+      <span
+        class="pointer-events-none absolute -inset-10 z-20 opacity-0 transition-opacity duration-150 sm:-inset-12"
+        aria-hidden="true"
+        data-logo-confetti-stage
+      >
+      </span>
+      <Image
+        src={almaLogo}
+        alt="Alma"
+        class="relative z-10 h-16 w-16 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(0,0,0,0.38)] sm:size-16"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <nav
+      class="pointer-events-auto flex flex-wrap items-center justify-end gap-x-5 gap-y-3 sm:gap-x-8"
+      aria-label="Primary navigation"
+    >
+      {
+        navItems.map((item, index) => (
+          <>
+            <a
+              href={item.href}
+              class="inline-block font-heading text-label font-extrabold tracking-[0.24em] text-event-secondary uppercase transition-[color,transform,text-shadow] duration-200 hover:-translate-y-0.5 hover:text-pulse hover:[text-shadow:0_0_14px_rgba(255,107,122,0.62)] focus-visible:-translate-y-0.5 focus-visible:text-cyan focus-visible:[text-shadow:0_0_14px_rgba(108,168,173,0.62)]"
+            >
+              {item.label}
+            </a>
+            {index < navItems.length - 1 && (
+              <span class="hidden text-event-secondary/55 sm:inline" aria-hidden="true">
+                |
+              </span>
+            )}
+          </>
+        ))
+      }
+      <a
+        href="#rsvp"
+        class="inline-flex h-10 items-center justify-center rounded-full border border-pulse/80 bg-pulse px-5 font-heading text-label font-extrabold tracking-[0.24em] text-invitation-cream uppercase shadow-[0_0_18px_rgba(255,107,122,0.084),inset_0_0_0_1px_rgba(253,239,206,0.18)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(255,107,122,0.124),inset_0_0_0_1px_rgba(253,239,206,0.28)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_26px_rgba(255,107,122,0.124),inset_0_0_0_1px_rgba(253,239,206,0.28)]"
+      >
+        RSVP
+      </a>
+    </nav>
+  </div>
+
+  <script>
+    import lottie from "lottie-web"
+
+    import confettiAnimationUrl from "@/assets/animations/retro-confetti-lottie.json?url"
+
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const logoConfettiTriggers = document.querySelectorAll("[data-logo-confetti]")
+
+    logoConfettiTriggers.forEach((trigger) => {
+      const stage = trigger.querySelector("[data-logo-confetti-stage]")
+
+      if (!(trigger instanceof HTMLElement) || !(stage instanceof HTMLElement)) return
+
+      const animation = lottie.loadAnimation({
+        container: stage,
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        path: confettiAnimationUrl,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid meet",
+        },
+      })
+
+      const hideStage = () => {
+        stage.classList.add("opacity-0")
+      }
+
+      const playConfetti = () => {
+        if (reducedMotionQuery.matches) return
+
+        stage.classList.remove("opacity-0")
+        animation.stop()
+        animation.goToAndPlay(0, true)
+      }
+
+      animation.addEventListener("complete", hideStage)
+      trigger.addEventListener("pointerenter", playConfetti)
+      trigger.addEventListener("focus", playConfetti)
+    })
+  </script>
+</header>

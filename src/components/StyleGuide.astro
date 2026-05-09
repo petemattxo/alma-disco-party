@@ -1,0 +1,269 @@
+---
+import { cn } from "@/lib/utils"
+
+const colorGroups = [
+  {
+    name: "Night foundations",
+    swatches: [
+      { label: "Page", token: "page", hex: "#08090D" },
+      { label: "Surface", token: "surface", hex: "#11131A" },
+      { label: "Raised", token: "surface-raised", hex: "#181B24" },
+      { label: "Primary", token: "event-primary", hex: "#F6F2EA" },
+      { label: "Secondary", token: "event-secondary", hex: "#C9C3B8" },
+      { label: "Muted", token: "event-muted", hex: "#8F8990" },
+    ],
+  },
+  {
+    name: "Disco accents",
+    swatches: [
+      { label: "Champagne", token: "champagne", hex: "#F6C96B" },
+      { label: "Cyan", token: "cyan", hex: "#7CE7F2" },
+      { label: "Ultraviolet", token: "ultraviolet", hex: "#8F5CFF" },
+      { label: "Pulse", token: "pulse", hex: "#FF6B7A" },
+      { label: "Mirror", token: "mirror", hex: "#D8E7FF" },
+      { label: "Ink", token: "ink", hex: "#08090D" },
+    ],
+  },
+]
+
+const typeSamples = [
+  {
+    label: "Display",
+    text: "Alma’s 60th Disco Party",
+    metadata: "Genty Demo · clamp(4rem, 13vw, 11rem) · 0.9",
+  },
+  {
+    label: "Heading",
+    text: "Countdown to the party",
+    metadata: "Inter Tight · clamp(2rem, 5vw, 4.5rem) · 0.95",
+  },
+  {
+    label: "Subheading",
+    text: "Come dressed for the dance floor",
+    metadata: "Inter Tight · clamp(1.25rem, 2.5vw, 2rem) · 1.08",
+  },
+  {
+    label: "Body",
+    text: "Join us as we celebrate Alma’s 60th birthday with retro disco energy, outfit prizes, and a night made for dancing.",
+    metadata: "Inter · 1rem · 1.55",
+  },
+]
+
+const countdownTiles = [
+  { label: "Days", value: "00" },
+  { label: "Hours", value: "00" },
+  { label: "Mins", value: "00" },
+  { label: "Secs", value: "00" },
+]
+
+const eventCards = [
+  { label: "Date", value: "June 3, 2026" },
+  { label: "Time", value: "6PM" },
+  { label: "Venue", value: "JEG Tower Sienna Hall" },
+  { label: "Theme", value: "Retro Disco" },
+]
+
+function getSwatchClass(token: string) {
+  switch (token) {
+    case "page":
+      return "bg-page"
+    case "surface":
+      return "bg-surface"
+    case "surface-raised":
+      return "bg-surface-raised"
+    case "event-primary":
+      return "bg-event-primary"
+    case "event-secondary":
+      return "bg-event-secondary"
+    case "event-muted":
+      return "bg-event-muted"
+    case "champagne":
+      return "bg-champagne"
+    case "cyan":
+      return "bg-cyan"
+    case "ultraviolet":
+      return "bg-ultraviolet"
+    case "pulse":
+      return "bg-pulse"
+    case "mirror":
+      return "bg-mirror"
+    default:
+      return "bg-ink"
+  }
+}
+
+function getTypeClass(label: string) {
+  switch (label) {
+    case "Display":
+      return "font-display text-display text-pretty font-normal tracking-normal"
+    case "Heading":
+      return "font-heading text-heading text-pretty font-extrabold"
+    case "Subheading":
+      return "font-heading text-subheading text-pretty font-bold"
+    default:
+      return "max-w-2xl text-body text-event-secondary"
+  }
+}
+
+function getCountdownAccent(index: number) {
+  if (index === 0) return "border-ultraviolet/70 text-ultraviolet"
+  if (index === 1) return "border-cyan/70 text-cyan"
+  if (index === 2) return "border-pulse/70 text-pulse"
+
+  return "border-champagne/70 text-champagne"
+}
+
+const panelClass = cn("rounded-md border border-border bg-surface-raised p-5")
+---
+
+<section class="min-h-svh overflow-hidden bg-page text-event-primary">
+  <div class="mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-6 py-8 md:px-8 md:py-12">
+    <header class="grid gap-8 border-b border-border pb-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+      <div>
+        <p class="font-heading text-label font-extrabold tracking-[0.32em] text-cyan uppercase">Design System</p>
+        <h1 class="mt-4 max-w-4xl font-display text-display font-black tracking-normal text-pretty text-event-primary">
+          Midnight Signal
+        </h1>
+      </div>
+      <div class="max-w-xl lg:justify-self-end">
+        <p class="text-body text-event-secondary">
+          Token reference for Alma’s one-page invitation. The system follows DESIGN.md and the approved page design:
+          editorial type, dark cinematic surfaces, chrome reflections, and tight retro-disco accents.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <span
+            class="rounded-pill bg-champagne px-3 py-1.5 font-heading text-label font-extrabold tracking-[0.18em] text-ink uppercase"
+          >
+            Static one-pager
+          </span>
+          <span
+            class="rounded-pill border border-cyan/60 px-3 py-1.5 font-heading text-label font-extrabold tracking-[0.18em] text-cyan uppercase"
+          >
+            Astro + Tailwind
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid gap-5">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <p class="font-heading text-label font-extrabold tracking-[0.28em] text-event-muted uppercase">01</p>
+          <h2 class="mt-2 font-heading text-h3 font-extrabold">Colour tokens</h2>
+        </div>
+        <p class="hidden text-caption text-event-muted md:block">
+          Use accents sparingly around CTAs, countdown states, and event labels.
+        </p>
+      </div>
+
+      <div class="grid gap-5">
+        {
+          colorGroups.map((group) => (
+            <article class={panelClass}>
+              <h3 class="font-heading text-label font-extrabold tracking-[0.24em] text-event-secondary uppercase">
+                {group.name}
+              </h3>
+              <div class="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+                {group.swatches.map((swatch) => (
+                  <div class="space-y-3">
+                    <div
+                      class={cn("h-24 rounded-md border border-border", getSwatchClass(swatch.token))}
+                      aria-label={`${swatch.label} ${swatch.hex}`}
+                    />
+                    <div>
+                      <p class="font-heading text-sm font-bold text-event-primary">{swatch.label}</p>
+                      <p class="mt-1 font-mono text-xs text-event-muted">{swatch.hex}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="grid gap-5">
+      <div>
+        <p class="font-heading text-label font-extrabold tracking-[0.28em] text-event-muted uppercase">02</p>
+        <h2 class="mt-2 font-heading text-h3 font-extrabold">Typography</h2>
+      </div>
+
+      <div class={cn(panelClass, "space-y-8")}>
+        {
+          typeSamples.map((sample) => (
+            <article class="border-b border-border pb-8 last:border-b-0 last:pb-0">
+              <div class="mb-4 flex flex-wrap items-baseline justify-between gap-3">
+                <h3 class="font-heading text-label font-extrabold tracking-[0.24em] text-champagne uppercase">
+                  {sample.label}
+                </h3>
+                <p class="font-mono text-xs text-event-muted">{sample.metadata}</p>
+              </div>
+              <p class={getTypeClass(sample.label)}>{sample.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="grid gap-5">
+      <div>
+        <p class="font-heading text-label font-extrabold tracking-[0.28em] text-event-muted uppercase">03</p>
+        <h2 class="mt-2 font-heading text-h3 font-extrabold">Component direction</h2>
+      </div>
+
+      <div class="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+        <article class={panelClass}>
+          <h3 class="font-heading text-label font-extrabold tracking-[0.24em] text-cyan uppercase">Event cards</h3>
+          <div class="mt-5 grid grid-cols-2 gap-3">
+            {
+              eventCards.map((card) => (
+                <div class="rounded-md border border-event-primary/20 bg-event-primary p-4 text-ink">
+                  <p class="font-heading text-label font-extrabold tracking-[0.18em] text-ink/60 uppercase">
+                    {card.label}
+                  </p>
+                  <p class="mt-3 text-base font-medium text-pretty">{card.value}</p>
+                </div>
+              ))
+            }
+          </div>
+        </article>
+
+        <article class={panelClass}>
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 class="font-heading text-label font-extrabold tracking-[0.24em] text-pulse uppercase">
+                Countdown tile
+              </h3>
+              <p class="mt-2 text-caption text-event-muted">Fixed, tabular, high-contrast numerals.</p>
+            </div>
+            <a
+              href="#rsvp"
+              class="rounded-pill bg-primary px-5 py-3 font-heading text-label font-extrabold tracking-[0.18em] text-primary-foreground uppercase transition-transform hover:-translate-y-0.5"
+            >
+              Send my reply
+            </a>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {
+              countdownTiles.map((tile, index) => (
+                <div
+                  class={cn(
+                    "aspect-[1/0.92] rounded-md border bg-event-primary/[0.06] p-4 text-center",
+                    getCountdownAccent(index),
+                  )}
+                >
+                  <p class="text-5xl font-mono leading-none font-bold tabular-nums">{tile.value}</p>
+                  <p class="mt-3 font-heading text-label font-extrabold tracking-[0.24em] text-event-primary uppercase">
+                    {tile.label}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</section>

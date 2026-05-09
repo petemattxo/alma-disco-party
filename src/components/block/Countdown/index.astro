@@ -1,0 +1,189 @@
+---
+import AppSection from "@/layouts/app-section.astro"
+
+const countdownUnits = [
+  {
+    key: "days",
+    label: "DAYS",
+    color: "text-groove-mauve",
+    border: "border-groove-mauve/70",
+    badge: "bg-groove-mauve/35",
+  },
+  { key: "hours", label: "HOURS", color: "text-groove-teal", border: "border-groove-teal/70", badge: "bg-transparent" },
+  { key: "minutes", label: "MINS", color: "text-pulse", border: "border-pulse/70", badge: "bg-transparent" },
+  {
+    key: "seconds",
+    label: "SECS",
+    color: "text-groove-orange",
+    border: "border-groove-orange/70",
+    badge: "bg-transparent",
+  },
+]
+---
+
+<AppSection sectionId="countdown" wrapperClass="overflow-hidden bg-page" class="py-12 lg:py-16">
+  <div class="mb-7 flex items-center gap-5 text-groove-mauve sm:gap-7">
+    <span
+      class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
+      aria-hidden="true"
+      data-parallax="0.6">✦</span
+    >
+    <div class="h-px min-w-8 flex-1 bg-groove-mauve/70 shadow-[0_0_10px_rgba(163,91,147,0.42)]"></div>
+    <h2
+      class="text-center font-countdown-heading text-[clamp(1.15rem,2.25vw,2.05rem)] leading-none font-extrabold tracking-[0.28em] text-groove-mauve uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9),0_0_10px_rgba(163,91,147,0.58)]"
+      data-parallax="0.4"
+    >
+      Countdown To The Party
+    </h2>
+    <div class="h-px min-w-8 flex-1 bg-groove-mauve/70 shadow-[0_0_10px_rgba(163,91,147,0.42)]"></div>
+    <span
+      class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
+      aria-hidden="true"
+      data-parallax="0.6">✦</span
+    >
+  </div>
+
+  <div
+    class="relative rounded-[1.8rem] border border-[#d8b8b1]/80 bg-[#11101b] p-2 shadow-[0_0_0_2px_rgba(216,184,177,0.22),0_16px_44px_rgba(0,0,0,0.45)]"
+  >
+    <svg
+      class="absolute top-3 left-3 h-5 w-5 text-[#d8b8b1]/70 drop-shadow-[0_0_5px_rgba(216,184,177,0.38)] sm:h-6 sm:w-6"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" fill="#0a0b16" stroke="currentColor" stroke-width="1.8"></circle>
+      <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"></circle>
+      <path d="M7.6 7.6L16.4 16.4M16.4 7.6L7.6 16.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+      ></path>
+    </svg>
+    <svg
+      class="absolute top-3 right-3 h-5 w-5 text-[#d8b8b1]/70 drop-shadow-[0_0_5px_rgba(216,184,177,0.38)] sm:h-6 sm:w-6"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" fill="#0a0b16" stroke="currentColor" stroke-width="1.8"></circle>
+      <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"></circle>
+      <path d="M7.6 7.6L16.4 16.4M16.4 7.6L7.6 16.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+      ></path>
+    </svg>
+    <svg
+      class="absolute bottom-3 left-3 h-5 w-5 text-[#d8b8b1]/70 drop-shadow-[0_0_5px_rgba(216,184,177,0.38)] sm:h-6 sm:w-6"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" fill="#0a0b16" stroke="currentColor" stroke-width="1.8"></circle>
+      <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"></circle>
+      <path d="M7.6 7.6L16.4 16.4M16.4 7.6L7.6 16.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+      ></path>
+    </svg>
+    <svg
+      class="absolute right-3 bottom-3 h-5 w-5 text-[#d8b8b1]/70 drop-shadow-[0_0_5px_rgba(216,184,177,0.38)] sm:h-6 sm:w-6"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" fill="#0a0b16" stroke="currentColor" stroke-width="1.8"></circle>
+      <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.4"></circle>
+      <path d="M7.6 7.6L16.4 16.4M16.4 7.6L7.6 16.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+      ></path>
+    </svg>
+    <div class="rounded-[1.35rem] border border-[#d8b8b1]/45 p-4 shadow-[inset_0_0_0_2px_rgba(8,9,13,0.74)] sm:p-6">
+      <div
+        class="grid items-center gap-5 rounded-[2.5rem] border border-groove-teal/45 bg-[#0a0b16] px-4 py-7 shadow-[inset_0_0_0_2px_rgba(216,184,177,0.2)] sm:px-7 lg:grid-cols-[7rem_1fr_7rem] lg:rounded-[5rem]"
+      >
+        <div class="mx-auto" aria-hidden="true" data-parallax="0.55">
+          <svg
+            class="h-18 w-18 text-[#d8b8b1] motion-safe:animate-[spin_4s_linear_infinite] lg:h-[5.8rem] lg:w-[5.8rem]"
+            viewBox="0 0 100 100"
+            fill="none"
+          >
+            <circle cx="50" cy="50" r="36" stroke="currentColor" stroke-width="4.5"></circle>
+            <circle cx="50" cy="50" r="30.5" stroke="currentColor" stroke-width="3.2"></circle>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(0 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(60 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(120 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(180 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(240 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(300 50 50)"></rect>
+            <circle cx="50" cy="50" r="10.5"></circle>
+          </svg>
+        </div>
+
+        <div class="grid w-full gap-4 lg:grid-cols-4" data-countdown data-target="2026-06-03T18:00:00+08:00">
+          {
+            countdownUnits.map((unit) => (
+              <div class="text-center">
+                <div
+                  class={`rounded-lg border ${unit.border} bg-[#121421] px-3 py-3 shadow-[inset_0_0_18px_rgba(0,0,0,0.7)]`}
+                >
+                  <span
+                    class={`block font-copy text-[clamp(3.2rem,7vw,5.45rem)] leading-none font-normal tracking-[0.08em] tabular-nums ${unit.color} [text-shadow:0_0_8.4px_currentColor]`}
+                    data-countdown-value={unit.key}
+                  >
+                    00
+                  </span>
+                </div>
+                <span
+                  class={`mt-2 inline-block px-2 py-0.5 font-copy text-[clamp(0.78rem,1.25vw,1.1rem)] leading-none font-normal tracking-[0.28em] text-invitation-cream uppercase ${unit.badge} [text-shadow:0_2px_0_rgba(8,9,13,0.85)]`}
+                >
+                  {unit.label}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mx-auto" aria-hidden="true" data-parallax="0.55">
+          <svg
+            class="h-18 w-18 text-[#d8b8b1] motion-safe:animate-[spin_4s_linear_infinite] lg:h-[5.8rem] lg:w-[5.8rem]"
+            viewBox="0 0 100 100"
+            fill="none"
+          >
+            <circle cx="50" cy="50" r="36" stroke="currentColor" stroke-width="4.5"></circle>
+            <circle cx="50" cy="50" r="30.5" stroke="currentColor" stroke-width="3.2"></circle>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(0 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(60 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(120 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(180 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(240 50 50)"></rect>
+            <rect x="47" y="19" width="6" height="12" rx="2.2" fill="currentColor" transform="rotate(300 50 50)"></rect>
+            <circle cx="50" cy="50" r="10.5"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const countdown = document.querySelector("[data-countdown]")
+    const formatCountdownValue = (value) => String(value).padStart(2, "0")
+
+    if (countdown instanceof HTMLElement) {
+      const target = new Date(countdown.dataset.target || "2026-06-03T18:00:00+08:00").getTime()
+      const values = {
+        days: countdown.querySelector('[data-countdown-value="days"]'),
+        hours: countdown.querySelector('[data-countdown-value="hours"]'),
+        minutes: countdown.querySelector('[data-countdown-value="minutes"]'),
+        seconds: countdown.querySelector('[data-countdown-value="seconds"]'),
+      }
+
+      const updateCountdown = () => {
+        const distance = Math.max(0, target - Date.now())
+        const days = Math.floor(distance / 86_400_000)
+        const hours = Math.floor((distance % 86_400_000) / 3_600_000)
+        const minutes = Math.floor((distance % 3_600_000) / 60_000)
+        const seconds = Math.floor((distance % 60_000) / 1_000)
+
+        if (values.days) values.days.textContent = formatCountdownValue(days)
+        if (values.hours) values.hours.textContent = formatCountdownValue(hours)
+        if (values.minutes) values.minutes.textContent = formatCountdownValue(minutes)
+        if (values.seconds) values.seconds.textContent = formatCountdownValue(seconds)
+      }
+
+      updateCountdown()
+      window.setInterval(updateCountdown, 1_000)
+    }
+  </script>
+</AppSection>

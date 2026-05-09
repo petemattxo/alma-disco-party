@@ -1,0 +1,31 @@
+---
+import { cn } from "@/lib/utils"
+import type { HTMLAttributes } from "astro/types"
+
+interface Props extends HTMLAttributes<"div"> {
+  layout?: "grid" | "flex" | "block"
+  sectionId?: string
+  wrapperClass?: string
+}
+
+const { layout = "block", sectionId, wrapperClass, "aria-labelledby": ariaLabelledby, ...props } = Astro.props
+---
+
+<section
+  id={sectionId}
+  aria-labelledby={ariaLabelledby}
+  class={cn("section-layout relative isolate scroll-mt-12 px-site-padding", wrapperClass)}
+>
+  <div
+    class={cn(
+      "section-container py-section-space-sm",
+      layout === "grid" && `grid grid-cols-12 gap-site-gutter`,
+      layout === "flex" && `flex w-full gap-site-gutter`,
+      layout === "block" && `space-y-space-6 block`,
+      props.class,
+    )}
+    {...props}
+  >
+    <slot />
+  </div>
+</section>

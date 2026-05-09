@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets"
+
+import footerBg from "@/assets/footer/footer.png"
+---
+
+<footer class="relative isolate overflow-hidden bg-page text-center text-event-primary">
+  <div class="relative min-h-56 px-20 sm:min-h-72 xl:min-h-96">
+    <div class="absolute inset-x-0 aspect-2172/724 w-full max-xl:bottom-0 xl:top-0">
+      <Image
+        src={footerBg}
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 h-full w-full object-contain object-bottom"
+        loading="lazy"
+        decoding="async"
+      />
+      <div
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(8,9,13,0.08)_0%,rgba(8,9,13,0.58)_48%,rgba(8,9,13,0.28)_100%)]"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-page via-page/75 to-transparent"
+        aria-hidden="true"
+      >
+      </div>
+    </div>
+
+    <div
+      class="relative z-10 mx-auto flex w-full max-w-(--section-width) flex-col items-center justify-center sm:min-h-72 md:py-20 xl:min-h-96"
+    >
+      <div class="flex items-center justify-center gap-4 sm:gap-6 mt-16">
+        <span
+          class="text-3xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)] sm:text-4xl"
+          aria-hidden="true"
+          data-parallax="0.65">✦</span
+        >
+        <p
+          class="font-location-script text-[clamp(1.2rem,2.2vw,2.6rem)] leading-tight font-normal text-[#d78a63] [text-shadow:0_3px_0_rgba(8,9,13,0.9),0_0_16px_rgba(215,138,99,0.36)]"
+        >
+          A night of disco, dancing, laughter, and celebrating Alma's 60 fab years!
+        </p>
+        <span
+          class="text-3xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)] sm:text-4xl"
+          aria-hidden="true"
+          data-parallax="0.65">✦</span
+        >
+      </div>
+      <p
+        class="mt-2 font-copy text-[clamp(0.5rem,1.3vw,1.0rem)] leading-none font-normal tracking-[0.28em] text-[#6fa4a9] uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9),0_0_12px_rgba(111,164,169,0.32)] max-sm:max-w-[16rem]"
+      >
+        With love, for Alma · June 3, 2026
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,396 @@
+---
+import foodIcon from "@/assets/icons/party_food_icon.svg?url"
+import hangerIcon from "@/assets/icons/party_hanger_icon.svg?url"
+import musicIcon from "@/assets/icons/party_music_icon.svg?url"
+import smileIcon from "@/assets/icons/party_smile_icon.svg?url"
+import AppSection from "@/layouts/app-section.astro"
+
+const partyNotes = [
+  { icon: foodIcon, text: "Food and drinks will be served" },
+  { icon: musicIcon, text: "Come early and ready to dance" },
+  { icon: hangerIcon, text: "Wear your best disco outfit" },
+  { icon: smileIcon, text: "Bring your smile and good vibes" },
+]
+---
+
+<AppSection sectionId="rsvp" wrapperClass="overflow-hidden bg-page" class="space-y-0 py-12 lg:py-16">
+  <div class="grid gap-6 lg:grid-cols-[1.55fr_0.9fr]">
+    <form
+      class="rounded-[1.35rem] border-2 border-[#d8b8b1]/75 bg-[#0d0e19] p-6 shadow-[0_0_0_1px_rgba(216,184,177,0.18),0_18px_50px_rgba(0,0,0,0.42)] sm:p-8"
+      data-rsvp-form
+    >
+      <h2
+        class="text-center font-rsvp text-[clamp(2.7rem,5.4vw,5rem)] leading-none font-normal tracking-[0.08em] text-groove-coral uppercase [text-shadow:0_3px_0_rgba(8,9,13,0.9),0_0_14px_rgba(223,92,99,0.48)]"
+        data-parallax="0.45"
+      >
+        RSVP
+      </h2>
+      <p
+        class="mt-2 mb-5 text-center font-copy text-[clamp(1rem,1.45vw,1.35rem)] leading-tight font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
+      >
+        Please confirm if you can come.
+      </p>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        <label class="sr-only" for="rsvp-name">Name</label>
+        <input
+          id="rsvp-name"
+          name="name"
+          type="text"
+          placeholder="Name"
+          required
+          class="h-12 rounded-xl border border-ink/30 bg-invitation-cream px-5 font-copy text-lg font-normal text-ink shadow-[inset_0_2px_4px_rgba(8,9,13,0.12)] placeholder:text-ink/75 sm:col-span-2"
+        />
+
+        <label class="sr-only" for="rsvp-mobile">Mobile number</label>
+        <input
+          id="rsvp-mobile"
+          name="mobile"
+          type="tel"
+          placeholder="Mobile number"
+          inputmode="tel"
+          autocomplete="tel"
+          required
+          data-rsvp-mobile
+          class="h-12 rounded-xl border border-ink/30 bg-invitation-cream px-5 font-copy text-lg font-normal text-ink shadow-[inset_0_2px_4px_rgba(8,9,13,0.12)] placeholder:text-ink/75"
+        />
+
+        <div class="relative">
+          <label class="sr-only" for="rsvp-guests">Number of guests</label>
+          <select
+            id="rsvp-guests"
+            name="guests"
+            required
+            class="h-12 w-full appearance-none rounded-xl border border-ink/30 bg-invitation-cream px-5 pr-12 font-copy text-lg font-normal text-ink shadow-[inset_0_2px_4px_rgba(8,9,13,0.12)]"
+          >
+            <option value="">No. of Guests</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <span
+            class="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-base leading-none text-ink"
+            aria-hidden="true"
+          >
+            ▾
+          </span>
+        </div>
+
+        <label class="sr-only" for="rsvp-greeting">Birthday greeting for Alma</label>
+        <textarea
+          id="rsvp-greeting"
+          name="greeting"
+          placeholder="Birthday Greeting for Alma (optional)"
+          class="min-h-32 resize-y rounded-xl border border-ink/30 bg-invitation-cream px-5 py-3 font-copy text-lg font-normal text-ink shadow-[inset_0_2px_4px_rgba(8,9,13,0.12)] placeholder:text-ink/75 sm:col-span-2"
+        ></textarea>
+      </div>
+
+      <fieldset class="mt-4 flex flex-wrap items-center gap-4 max-md:justify-center max-md:text-center">
+        <legend
+          class="mr-3 font-copy text-[clamp(1rem,1.35vw,1.25rem)] leading-tight font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.9)] max-md:mb-2.5 sm:float-left sm:pt-3"
+        >
+          Will you attend?
+        </legend>
+        <label class="group cursor-pointer">
+          <input class="peer sr-only" type="radio" name="attending" value="yes" checked />
+          <span
+            class="inline-flex min-w-36 items-center justify-center gap-3 rounded-xl border border-groove-teal/45 bg-groove-teal/18 px-6 py-3 font-copy text-xl leading-none font-normal text-invitation-cream/65 opacity-65 shadow-[0_0_6px_rgba(108,168,173,0.12)] transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-200 group-hover:-translate-y-0.5 group-hover:bg-groove-teal/50 group-hover:text-invitation-cream group-hover:opacity-100 group-hover:shadow-[0_0_18px_rgba(108,168,173,0.36)] peer-checked:scale-105 peer-checked:border-invitation-cream peer-checked:bg-groove-teal peer-checked:text-invitation-cream peer-checked:opacity-100 peer-checked:shadow-[0_0_0_3px_rgba(253,239,206,0.32),0_0_28px_rgba(108,168,173,0.68),inset_0_0_0_1px_rgba(253,239,206,0.28)] peer-focus-visible:-translate-y-0.5 peer-focus-visible:shadow-[0_0_22px_rgba(108,168,173,0.48)] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus"
+          >
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-invitation-cream text-groove-teal">✓</span>
+            Yes
+          </span>
+        </label>
+        <label class="group cursor-pointer">
+          <input class="peer sr-only" type="radio" name="attending" value="no" />
+          <span
+            class="inline-flex min-w-36 items-center justify-center gap-3 rounded-xl border border-groove-coral/45 bg-groove-coral/18 px-6 py-3 font-copy text-xl leading-none font-normal text-invitation-cream/65 opacity-65 shadow-[0_0_6px_rgba(223,92,99,0.1)] transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-200 group-hover:-translate-y-0.5 group-hover:bg-groove-coral/50 group-hover:text-invitation-cream group-hover:opacity-100 group-hover:shadow-[0_0_18px_rgba(223,92,99,0.34)] peer-checked:scale-105 peer-checked:border-invitation-cream peer-checked:bg-groove-coral/90 peer-checked:text-invitation-cream peer-checked:opacity-100 peer-checked:shadow-[0_0_0_3px_rgba(253,239,206,0.3),0_0_28px_rgba(223,92,99,0.62),inset_0_0_0_1px_rgba(253,239,206,0.24)] peer-focus-visible:-translate-y-0.5 peer-focus-visible:shadow-[0_0_22px_rgba(223,92,99,0.44)] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus"
+          >
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-pulse text-ink">×</span>
+            No
+          </span>
+        </label>
+      </fieldset>
+
+      <button
+        type="submit"
+        class="mt-5 flex h-16 w-full cursor-pointer items-center justify-center gap-4 rounded-xl border border-pulse/80 bg-pulse px-5 font-copy text-[clamp(1.08rem,1.6vw,1.48rem)] leading-none font-normal tracking-[0.08em] text-invitation-cream shadow-[0_0_20px_rgba(255,107,122,0.1344),inset_0_0_0_1px_rgba(253,239,206,0.18)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_28px_rgba(255,107,122,0.192),inset_0_0_0_1px_rgba(253,239,206,0.26)]"
+      >
+        <span aria-hidden="true" data-parallax="0.55">✦</span>
+        Send my reply
+      </button>
+    </form>
+
+    <div
+      class="relative hidden min-h-[32rem] overflow-hidden rounded-[1.35rem] border-2 border-pulse/75 bg-[#0d0e19] p-4 text-center shadow-[0_0_0_1px_rgba(255,107,122,0.18),0_18px_50px_rgba(0,0,0,0.42),0_0_42px_rgba(255,107,122,0.18)] sm:p-6"
+      data-rsvp-success
+      aria-live="polite"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(255,107,122,0.18),transparent_26%),radial-gradient(circle_at_82%_28%,rgba(108,168,173,0.16),transparent_28%),radial-gradient(circle_at_50%_86%,rgba(246,201,107,0.14),transparent_34%)]"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute inset-0 [background-image:linear-gradient(rgba(253,239,206,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(253,239,206,0.05)_1px,transparent_1px)] [background-size:28px_28px] opacity-45"
+        aria-hidden="true"
+      >
+      </div>
+      <span
+        class="sm:text-5xl absolute top-8 left-8 text-4xl text-pulse [text-shadow:0_0_18px_rgba(255,107,122,0.68)]"
+        aria-hidden="true"
+        data-parallax="0.5">✦</span
+      >
+      <span
+        class="absolute top-10 right-10 text-3xl text-groove-teal [text-shadow:0_0_18px_rgba(108,168,173,0.62)] sm:text-4xl"
+        aria-hidden="true"
+        data-parallax="0.65">✦</span
+      >
+      <span
+        class="absolute bottom-10 left-14 text-2xl text-champagne [text-shadow:0_0_16px_rgba(246,201,107,0.6)] sm:text-3xl"
+        aria-hidden="true"
+        data-parallax="0.45">✦</span
+      >
+      <span
+        class="text-5xl absolute right-14 bottom-12 text-groove-mauve [text-shadow:0_0_18px_rgba(154,95,144,0.58)]"
+        aria-hidden="true"
+        data-parallax="0.55">✦</span
+      >
+      <div
+        class="relative z-10 grid min-h-[30rem] place-items-center rounded-[1rem] border border-invitation-cream/20 bg-page/28 px-4 py-10 shadow-[inset_0_0_28px_rgba(253,239,206,0.06)]"
+      >
+        <div class="mx-auto max-w-[40rem]">
+          <p
+            class="mb-5 inline-flex items-center justify-center rounded-full border border-champagne/55 bg-champagne/12 px-5 py-2 font-countdown-heading text-xs leading-none font-extrabold tracking-[0.32em] text-champagne uppercase shadow-[0_0_18px_rgba(246,201,107,0.18)]"
+          >
+            RSVP Confirmed
+          </p>
+          <div class="mb-5 flex items-center justify-center gap-4 text-pulse" aria-hidden="true">
+            <span class="h-px w-14 bg-pulse/65 shadow-[0_0_10px_rgba(255,107,122,0.48)]"></span>
+            <span class="text-2xl [text-shadow:0_0_14px_rgba(255,107,122,0.68)]">✦</span>
+            <span class="h-px w-14 bg-pulse/65 shadow-[0_0_10px_rgba(255,107,122,0.48)]"></span>
+          </div>
+          <p
+            class="font-rsvp text-[clamp(3rem,7vw,6.4rem)] leading-none font-normal tracking-[0.06em] text-groove-coral uppercase [text-shadow:0_4px_0_rgba(8,9,13,0.95),0_0_18px_rgba(223,92,99,0.44)]"
+          >
+            Thank You
+          </p>
+          <p
+            class="mx-auto mt-6 max-w-[34rem] font-countdown-heading text-[clamp(1.45rem,3vw,2.8rem)] leading-tight font-extrabold tracking-[0.04em] text-invitation-cream"
+          >
+            and see you at the dancefloor!
+          </p>
+          <div
+            class="mx-auto mt-8 flex w-fit items-center gap-3 rounded-full border border-groove-teal/45 bg-groove-teal/10 px-5 py-3 font-copy text-sm leading-none tracking-[0.18em] text-groove-teal uppercase shadow-[0_0_18px_rgba(108,168,173,0.16)]"
+          >
+            <span aria-hidden="true">✦</span>
+            Get ready to groove
+            <span aria-hidden="true">✦</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="relative hidden min-h-[32rem] overflow-hidden rounded-[1.35rem] border-2 border-groove-mauve/75 bg-[#0d0e19] p-4 text-center shadow-[0_0_0_1px_rgba(163,91,147,0.18),0_18px_50px_rgba(0,0,0,0.42),0_0_36px_rgba(163,91,147,0.14)] sm:p-6"
+      data-rsvp-decline
+      aria-live="polite"
+    >
+      <div
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(163,91,147,0.18),transparent_28%),radial-gradient(circle_at_82%_32%,rgba(108,168,173,0.12),transparent_30%),radial-gradient(circle_at_50%_88%,rgba(253,239,206,0.1),transparent_34%)]"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute inset-0 [background-image:linear-gradient(rgba(253,239,206,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(253,239,206,0.04)_1px,transparent_1px)] [background-size:28px_28px] opacity-45"
+        aria-hidden="true"
+      >
+      </div>
+      <span
+        class="sm:text-5xl absolute top-8 left-8 text-4xl text-groove-mauve [text-shadow:0_0_18px_rgba(163,91,147,0.58)]"
+        aria-hidden="true"
+        data-parallax="0.5">✦</span
+      >
+      <span
+        class="absolute right-10 bottom-12 text-3xl text-groove-teal [text-shadow:0_0_16px_rgba(108,168,173,0.46)]"
+        aria-hidden="true"
+        data-parallax="0.55">✦</span
+      >
+      <div
+        class="relative z-10 grid min-h-[30rem] place-items-center rounded-[1rem] border border-invitation-cream/18 bg-page/28 px-4 py-10 shadow-[inset_0_0_28px_rgba(253,239,206,0.05)]"
+      >
+        <div class="mx-auto max-w-[38rem]">
+          <p
+            class="mb-5 inline-flex items-center justify-center rounded-full border border-groove-mauve/55 bg-groove-mauve/14 px-5 py-2 font-countdown-heading text-xs leading-none font-extrabold tracking-[0.28em] text-groove-mauve uppercase shadow-[0_0_14px_rgba(163,91,147,0.16)]"
+          >
+            RSVP Received
+          </p>
+          <p
+            class="font-rsvp text-[clamp(2.2rem,5.8vw,5.3rem)] leading-none font-normal tracking-[0.05em] text-groove-coral uppercase [text-shadow:0_4px_0_rgba(8,9,13,0.95),0_0_14px_rgba(223,92,99,0.32)]"
+          >
+            We'll Miss You
+          </p>
+          <p
+            class="mx-auto mt-6 max-w-[32rem] font-countdown-heading text-[clamp(1.15rem,2.35vw,2.1rem)] leading-tight font-extrabold tracking-[0.03em] text-invitation-cream"
+          >
+            Sorry you can't make it. Thank you for letting us know!
+          </p>
+          <div
+            class="mx-auto mt-8 flex w-fit items-center gap-3 rounded-full border border-groove-teal/45 bg-groove-teal/10 px-5 py-3 font-copy text-sm leading-none tracking-[0.16em] text-groove-teal uppercase shadow-[0_0_16px_rgba(108,168,173,0.14)]"
+          >
+            <span aria-hidden="true">✦</span>
+            Sending disco love
+            <span aria-hidden="true">✦</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside
+      class="rounded-[1.35rem] border-2 border-groove-teal/75 bg-[#0d0e19] p-6 shadow-[0_0_0_1px_rgba(108,168,173,0.18),0_18px_50px_rgba(0,0,0,0.42)] sm:p-8"
+      aria-labelledby="party-notes-heading"
+    >
+      <h2
+        id="party-notes-heading"
+        class="font-countdown-heading text-[clamp(1.55rem,2.8vw,2.55rem)] leading-none font-extrabold tracking-[0.16em] text-groove-teal uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9),0_0_12px_rgba(108,168,173,0.45)]"
+        data-parallax="0.4"
+      >
+        Party Notes:
+      </h2>
+
+      <div class="mt-6 grid gap-5">
+        {
+          partyNotes.map((note, index) => (
+            <div class="grid grid-cols-[4.5rem_1fr] items-center gap-4">
+              <img src={note.icon} alt="" aria-hidden="true" class="h-[4.5rem] w-[4.5rem]" data-parallax="0.65" />
+              <p class="font-copy text-[clamp(1.05rem,1.6vw,1.45rem)] leading-[1.22] font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.9)]">
+                {note.text}
+              </p>
+              {index < partyNotes.length - 1 && <div class="col-start-2 h-px bg-[#d8b8b1]/25" />}
+            </div>
+          ))
+        }
+      </div>
+    </aside>
+  </div>
+
+  <p
+    class="mt-6 text-center font-copy text-[clamp(1rem,1.45vw,1.3rem)] leading-tight font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
+  >
+    Contact Marilou Cortes at <span class="inline-block min-w-28 border-b border-invitation-cream/70 align-baseline"
+    ></span> for questions &amp; concerns.
+  </p>
+</AppSection>
+
+<script>
+  const rsvpForm = document.querySelector("[data-rsvp-form]")
+  const rsvpSuccess = document.querySelector("[data-rsvp-success]")
+  const rsvpDecline = document.querySelector("[data-rsvp-decline]")
+  const rsvpMobile = document.querySelector("[data-rsvp-mobile]")
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+  const isPhilippineMobileNumber = (value: string) => {
+    const normalizedValue = value.replace(/[\s-]/g, "")
+
+    return /^(?:\+63|63|0)9\d{9}$/.test(normalizedValue)
+  }
+
+  const validateMobileNumber = () => {
+    if (!(rsvpMobile instanceof HTMLInputElement)) return true
+
+    if (!rsvpMobile.value) {
+      rsvpMobile.setCustomValidity("")
+      return true
+    }
+
+    const isValid = isPhilippineMobileNumber(rsvpMobile.value)
+    rsvpMobile.setCustomValidity(isValid ? "" : "Enter a valid Philippine mobile number, e.g. 09171234567.")
+
+    return isValid
+  }
+
+  const launchConfetti = () => {
+    if (reduceMotion.matches) return
+
+    const canvas = document.createElement("canvas")
+    const context = canvas.getContext("2d")
+    if (!context) return
+
+    const colors = ["#ff6b7a", "#f6c96b", "#7ce7f2", "#9a5f90", "#fdefce"]
+    const particles = Array.from({ length: 120 }, () => ({
+      x: window.innerWidth / 2,
+      y: window.innerHeight * 0.28,
+      size: Math.random() * 7 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      velocityX: (Math.random() - 0.5) * 12,
+      velocityY: Math.random() * -10 - 4,
+      gravity: Math.random() * 0.18 + 0.18,
+      rotation: Math.random() * Math.PI,
+      spin: (Math.random() - 0.5) * 0.28,
+    }))
+
+    canvas.className = "pointer-events-none fixed inset-0 z-[100]"
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    document.body.append(canvas)
+
+    let frame = 0
+    const animate = () => {
+      frame += 1
+      context.clearRect(0, 0, canvas.width, canvas.height)
+
+      particles.forEach((particle) => {
+        particle.x += particle.velocityX
+        particle.y += particle.velocityY
+        particle.velocityY += particle.gravity
+        particle.rotation += particle.spin
+
+        context.save()
+        context.translate(particle.x, particle.y)
+        context.rotate(particle.rotation)
+        context.fillStyle = particle.color
+        context.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size * 0.55)
+        context.restore()
+      })
+
+      if (frame < 120) {
+        window.requestAnimationFrame(animate)
+        return
+      }
+
+      canvas.remove()
+    }
+
+    animate()
+  }
+
+  const showRsvpMessage = (message: Element) => {
+    rsvpForm?.classList.add("hidden")
+    message.classList.remove("hidden")
+    message.classList.add("grid")
+  }
+
+  if (rsvpForm instanceof HTMLFormElement && rsvpSuccess instanceof HTMLElement && rsvpDecline instanceof HTMLElement) {
+    rsvpMobile?.addEventListener("input", validateMobileNumber)
+    rsvpMobile?.addEventListener("blur", validateMobileNumber)
+
+    rsvpForm.addEventListener("submit", (event) => {
+      if (!validateMobileNumber()) {
+        event.preventDefault()
+        if (rsvpMobile instanceof HTMLInputElement) rsvpMobile.reportValidity()
+        return
+      }
+
+      const formData = new FormData(rsvpForm)
+      const isAttending = formData.get("attending") === "yes"
+
+      event.preventDefault()
+
+      if (isAttending) {
+        showRsvpMessage(rsvpSuccess)
+        launchConfetti()
+        return
+      }
+
+      showRsvpMessage(rsvpDecline)
+    })
+  }
+</script>

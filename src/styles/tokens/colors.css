@@ -1,0 +1,42 @@
+:root {
+  /* --page: #08090d; */
+  --page: #111120;
+  --surface: #11131a;
+  --surface-raised: #181b24;
+  --event-primary: #f6f2ea;
+  --event-secondary: #c9c3b8;
+  --event-muted: #8f8990;
+  --ink: #08090d;
+  --mirror: #d8e7ff;
+  --ultraviolet: #8f5cff;
+  --champagne: #f6c96b;
+  --cyan: #7ce7f2;
+  --pulse: #ff6b7a;
+  --invitation-cream: #fdefce;
+  --groove-coral: #df5c63;
+  --groove-orange: #e77943;
+  --groove-mauve: #a35b93;
+  --groove-teal: #6ca8ad;
+  --focus: #7ce7f2;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-event-primary: var(--event-primary);
+  --color-event-secondary: var(--event-secondary);
+  --color-event-muted: var(--event-muted);
+  --color-ink: var(--ink);
+  --color-mirror: var(--mirror);
+  --color-ultraviolet: var(--ultraviolet);
+  --color-champagne: var(--champagne);
+  --color-cyan: var(--cyan);
+  --color-pulse: var(--pulse);
+  --color-invitation-cream: var(--invitation-cream);
+  --color-groove-coral: var(--groove-coral);
+  --color-groove-orange: var(--groove-orange);
+  --color-groove-mauve: var(--groove-mauve);
+  --color-groove-teal: var(--groove-teal);
+  --color-focus: var(--focus);
+}

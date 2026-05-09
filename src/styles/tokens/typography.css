@@ -1,0 +1,111 @@
+:root {
+  --font-family-display:
+    var(--font-genty-demo), "Genty Demo", var(--font-archivo-black), "Archivo Black", "Arial Black", system-ui,
+    sans-serif;
+  --font-family-script: var(--font-yellowtail), "Yellowtail", "Brush Script MT", cursive;
+  --font-family-location-script:
+    var(--font-signpainter-house-script), "SignPainter House Script", "Brush Script MT", cursive;
+  --font-family-heading: var(--font-inter-tight), "Inter Tight", var(--font-inter), system-ui, sans-serif;
+  --font-family-rsvp: var(--font-cooper-black-local), "Cooper Black", "Arial Black", system-ui, sans-serif;
+  --font-family-countdown-heading: var(--font-montserrat), Montserrat, var(--font-inter), system-ui, sans-serif;
+  --font-family-copy: var(--font-poppins), Poppins, var(--font-inter), system-ui, sans-serif;
+  --font-family-sans: var(--font-inter), Inter, system-ui, sans-serif;
+  --font-family-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --font-weight-body: 450;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-display: 400;
+
+  --font-size-xs: 0.75rem;
+  --line-height-xs: 1rem;
+  --font-size-sm: 0.875rem;
+  --line-height-sm: 1.35;
+  --font-size-base: 1rem;
+  --line-height-base: 1.55;
+  --font-size-lg: 1.125rem;
+  --line-height-lg: 1.55;
+  --font-size-xl: 1.25rem;
+  --line-height-xl: 1.35;
+  --font-size-2xl: 1.5rem;
+  --line-height-2xl: 1.2;
+  --font-size-3xl: 1.875rem;
+  --line-height-3xl: 1.1;
+  --font-size-4xl: 2.25rem;
+  --line-height-4xl: 1;
+
+  --font-size-display: clamp(4rem, 13vw, 11rem);
+  --line-height-display: 0.9;
+  --font-size-heading: clamp(2rem, 5vw, 4.5rem);
+  --line-height-heading: 0.95;
+  --font-size-subheading: clamp(1.25rem, 2.5vw, 2rem);
+  --line-height-subheading: 1.08;
+  --font-size-label: 0.75rem;
+  --line-height-label: 1;
+  --font-size-caption: 0.875rem;
+  --line-height-caption: 1.35;
+
+  --font-size-h1: var(--font-size-display);
+  --line-height-h1: var(--line-height-display);
+  --font-size-h2: var(--font-size-heading);
+  --line-height-h2: var(--line-height-heading);
+  --font-size-h3: var(--font-size-subheading);
+  --line-height-h3: var(--line-height-subheading);
+  --font-size-body: var(--font-size-base);
+  --line-height-body: var(--line-height-base);
+  --font-size-body-sm: var(--font-size-sm);
+  --line-height-body-sm: var(--line-height-sm);
+}
+
+@theme inline {
+  --font-sans: var(--font-family-sans);
+  --font-heading: var(--font-family-heading);
+  --font-rsvp: var(--font-family-rsvp);
+  --font-countdown-heading: var(--font-family-countdown-heading);
+  --font-copy: var(--font-family-copy);
+  --font-display: var(--font-family-display);
+  --font-script: var(--font-family-script);
+  --font-location-script: var(--font-family-location-script);
+  --font-mono: var(--font-family-mono);
+
+  --text-*: initial;
+  --text-xs: var(--font-size-xs);
+  --text-xs--line-height: var(--line-height-xs);
+  --text-sm: var(--font-size-sm);
+  --text-sm--line-height: var(--line-height-sm);
+  --text-base: var(--font-size-base);
+  --text-base--line-height: var(--line-height-base);
+  --text-lg: var(--font-size-lg);
+  --text-lg--line-height: var(--line-height-lg);
+  --text-xl: var(--font-size-xl);
+  --text-xl--line-height: var(--line-height-xl);
+  --text-2xl: var(--font-size-2xl);
+  --text-2xl--line-height: var(--line-height-2xl);
+  --text-3xl: var(--font-size-3xl);
+  --text-3xl--line-height: var(--line-height-3xl);
+  --text-4xl: var(--font-size-4xl);
+  --text-4xl--line-height: var(--line-height-4xl);
+
+  --text-h1: var(--font-size-h1);
+  --text-h1--line-height: var(--line-height-h1);
+  --text-h2: var(--font-size-h2);
+  --text-h2--line-height: var(--line-height-h2);
+  --text-h3: var(--font-size-h3);
+  --text-h3--line-height: var(--line-height-h3);
+  --text-display: var(--font-size-display);
+  --text-display--line-height: var(--line-height-display);
+  --text-heading: var(--font-size-heading);
+  --text-heading--line-height: var(--line-height-heading);
+  --text-subheading: var(--font-size-subheading);
+  --text-subheading--line-height: var(--line-height-subheading);
+  --text-body: var(--font-size-body);
+  --text-body--line-height: var(--line-height-body);
+  --text-body-sm: var(--font-size-body-sm);
+  --text-body-sm--line-height: var(--line-height-body-sm);
+  --text-label: var(--font-size-label);
+  --text-label--line-height: var(--line-height-label);
+  --text-caption: var(--font-size-caption);
+  --text-caption--line-height: var(--line-height-caption);
+}

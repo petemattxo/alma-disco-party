@@ -1,0 +1,100 @@
+---
+import calendarIcon from "@/assets/icons/calendar_icon.svg?url"
+import clockIcon from "@/assets/icons/clock_icon.svg?url"
+import discoBallIcon from "@/assets/icons/disco_ball_icon.svg?url"
+import locationIcon from "@/assets/icons/location_icon.svg?url"
+import AppSection from "@/layouts/app-section.astro"
+---
+
+<AppSection sectionId="details" wrapperClass="scroll-mt-24" class="mt-8 pt-0 lg:mt-12 lg:pt-0!">
+  <h2 class="sr-only">Party details</h2>
+
+  <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+    <article
+      class="rounded-[1.35rem] border-2 border-pulse bg-[radial-gradient(circle_at_50%_0%,#fff8e9_0%,#fdefce_58%,#f5e2bd_100%)] shadow-[0_4px_0_rgba(0,0,0,0.52)]"
+    >
+      <div class="flex min-h-[11.75rem] flex-col items-center justify-start p-3 text-center">
+        <div class="grid h-[9.12rem] place-items-start justify-items-center" aria-hidden="true">
+          <img src={calendarIcon} alt="" class="h-[8.352rem] w-[8.352rem]" data-parallax="0.65" />
+        </div>
+        <p class="font-countdown-heading text-xs leading-none font-extrabold tracking-[0.28em] text-pulse uppercase">
+          Date
+        </p>
+        <div class="my-2 h-px w-12 bg-pulse/45"></div>
+        <p
+          class="font-countdown-heading text-[clamp(0.9rem,1.18vw,1.12rem)] leading-none font-extrabold tracking-[0.06em] text-ink uppercase"
+        >
+          June 3, 2026
+        </p>
+        <p
+          class="mt-1 font-copy text-[clamp(0.65rem,0.82vw,0.82rem)] leading-none font-medium tracking-[0.08em] text-ink/80 uppercase"
+        >
+          Wednesday
+        </p>
+      </div>
+    </article>
+
+    <article
+      class="rounded-[1.35rem] border-2 border-champagne bg-[radial-gradient(circle_at_50%_0%,#fff8e9_0%,#fdefce_58%,#f5e2bd_100%)] shadow-[0_4px_0_rgba(0,0,0,0.52)]"
+    >
+      <div class="flex min-h-[11.75rem] flex-col items-center justify-start p-3 text-center">
+        <div class="grid h-[9.12rem] place-items-start justify-items-center" aria-hidden="true">
+          <img src={clockIcon} alt="" class="h-[8.352rem] w-[8.352rem]" data-parallax="0.8" />
+        </div>
+        <p
+          class="font-countdown-heading text-xs leading-none font-extrabold tracking-[0.28em] text-champagne uppercase"
+        >
+          Time
+        </p>
+        <div class="my-2 h-px w-12 bg-champagne/55"></div>
+        <p
+          class="font-countdown-heading text-[clamp(1rem,1.38vw,1.3rem)] leading-none font-extrabold tracking-[0.08em] text-ink uppercase"
+        >
+          6PM
+        </p>
+      </div>
+    </article>
+
+    <article
+      class="rounded-[1.35rem] border-2 border-groove-teal bg-[radial-gradient(circle_at_50%_0%,#fff8e9_0%,#fdefce_58%,#f5e2bd_100%)] shadow-[0_4px_0_rgba(0,0,0,0.52)]"
+    >
+      <div class="flex min-h-[11.75rem] flex-col items-center justify-start p-3 text-center">
+        <div class="grid h-[9.12rem] place-items-start justify-items-center" aria-hidden="true">
+          <img src={locationIcon} alt="" class="h-[9.12rem] w-[9.12rem]" data-parallax="0.7" />
+        </div>
+        <p
+          class="font-countdown-heading text-xs leading-none font-extrabold tracking-[0.28em] text-groove-teal uppercase"
+        >
+          Venue
+        </p>
+        <div class="my-2 h-px w-12 bg-groove-teal/50"></div>
+        <p
+          class="font-countdown-heading text-[clamp(0.76rem,1vw,0.96rem)] leading-[1.12] font-extrabold tracking-[0.05em] text-ink uppercase"
+        >
+          JEG Tower,<br />Sienna Hall
+        </p>
+      </div>
+    </article>
+
+    <article
+      class="rounded-[1.35rem] border-2 border-groove-mauve bg-[radial-gradient(circle_at_50%_0%,#fff8e9_0%,#fdefce_58%,#f5e2bd_100%)] shadow-[0_4px_0_rgba(0,0,0,0.52)]"
+    >
+      <div class="flex min-h-[11.75rem] flex-col items-center justify-start p-3 text-center">
+        <div class="grid h-[9.12rem] place-items-start justify-items-center" aria-hidden="true">
+          <img src={discoBallIcon} alt="" class="h-[8.736rem] w-[8.736rem]" data-parallax="0.9" />
+        </div>
+        <p
+          class="font-countdown-heading text-xs leading-none font-extrabold tracking-[0.28em] text-groove-mauve uppercase"
+        >
+          Theme
+        </p>
+        <div class="my-2 h-px w-12 bg-groove-mauve/50"></div>
+        <p
+          class="font-countdown-heading text-[clamp(0.9rem,1.18vw,1.12rem)] leading-none font-extrabold tracking-[0.06em] text-ink uppercase"
+        >
+          Retro 80's Disco
+        </p>
+      </div>
+    </article>
+  </div>
+</AppSection>

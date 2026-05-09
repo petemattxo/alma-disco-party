@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets"
+
+import AppSection from "@/layouts/app-section.astro"
+import baluliPoster from "@/assets/special/baluli.png"
+---
+
+<AppSection
+  wrapperClass="overflow-hidden bg-page"
+  class="grid max-w-[64rem] gap-8 space-y-0 py-12 lg:py-16"
+  aria-labelledby="special-performance-heading"
+>
+  <!-- <div
+    class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(255,211,106,0.18),transparent_30%),radial-gradient(circle_at_82%_28%,rgba(108,168,173,0.18),transparent_28%),linear-gradient(180deg,rgba(13,14,25,0.2),rgba(8,9,13,0.45))]"
+  >
+  </div> -->
+
+  <div class="text-center">
+    <div class="mb-3 flex items-center gap-5 text-groove-mauve sm:gap-7">
+      <div class="h-px min-w-8 flex-1 bg-groove-teal/70 shadow-[0_0_10px_rgba(108,168,173,0.38)]"></div>
+      <span
+        class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
+        aria-hidden="true"
+        data-parallax="0.7">✦</span
+      >
+      <h2
+        id="special-performance-heading"
+        class="font-countdown-heading text-[clamp(1.2rem,2.45vw,2.15rem)] leading-none font-extrabold tracking-[0.32em] text-groove-mauve uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
+        data-parallax="0.45"
+      >
+        Special Performance
+      </h2>
+      <span
+        class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
+        aria-hidden="true"
+        data-parallax="0.7">✦</span
+      >
+      <div class="h-px min-w-8 flex-1 bg-groove-teal/70 shadow-[0_0_10px_rgba(108,168,173,0.38)]"></div>
+    </div>
+
+    <p
+      class="font-copy text-[clamp(1.05rem,1.65vw,1.45rem)] leading-tight font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
+    >
+      Don't miss this one-of-a-kind performance!
+    </p>
+  </div>
+
+  <div class="relative mx-auto w-full max-w-[32.2rem]">
+    <div
+      class="border-groove-gold relative overflow-hidden rounded-[1.5rem] border-4 bg-[#0d0e19] p-2 shadow-[0_24px_70px_rgba(0,0,0,0.52)]"
+    >
+      <Image
+        src={baluliPoster}
+        alt="Guest singer poster for Wilfred Louis Cortes"
+        class="h-auto w-full rounded-[1rem]"
+        widths={[360, 480, 720, 960]}
+        sizes="(min-width: 1024px) 34vw, 92vw"
+      />
+    </div>
+  </div>
+</AppSection>

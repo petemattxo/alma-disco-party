@@ -1,0 +1,359 @@
+---
+import { Image } from "astro:assets"
+
+import vinylImage from "@/assets/media/vinyl.png"
+
+const playlist = [
+  {
+    title: "Footloose",
+    artist: "Kenny Loggins",
+    src: "/audio/kenny-loggins-footloose.mp4",
+  },
+  {
+    title: "Girls Just Want to Have Fun",
+    artist: "Cyndi Lauper",
+    src: "/audio/cyndi-lauper-girls-just-want-to-have-fun.mp3",
+  },
+  {
+    title: "Take On Me",
+    artist: "A-ha",
+    src: "/audio/a-ha-take-on-me.mp4",
+  },
+  {
+    title: "I Wanna Dance with Somebody",
+    artist: "Whitney Houston",
+    src: "/audio/whitney-houston-i-wanna-dance-with-somebody.mp4",
+  },
+]
+---
+
+<aside
+  class="fixed right-4 bottom-4 z-50 text-event-primary sm:right-6 sm:bottom-6"
+  aria-labelledby="retro-player-heading"
+  data-retro-player
+  data-open="false"
+>
+  <button
+    type="button"
+    class="group pointer-events-auto grid justify-items-center gap-2 rounded-[1.35rem] border-2 border-groove-teal/70 bg-[#090b16]/95 p-3 shadow-[0_0_0_1px_rgba(108,168,173,0.18),0_18px_50px_rgba(0,0,0,0.56)] backdrop-blur-md transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-pulse/80 hover:shadow-[0_0_28px_rgba(255,107,122,0.35),0_18px_50px_rgba(0,0,0,0.56)] focus-visible:-translate-y-1 focus-visible:border-pulse/80 focus-visible:shadow-[0_0_28px_rgba(255,107,122,0.35),0_18px_50px_rgba(0,0,0,0.56)]"
+    aria-label="Open retro music player"
+    aria-expanded="false"
+    data-retro-open
+  >
+    <span class="relative grid h-24 w-24 place-items-center" aria-hidden="true">
+      <Image
+        src={vinylImage}
+        alt=""
+        class="h-full w-full rounded-full object-cover shadow-[0_0_24px_rgba(255,107,122,0.28)] motion-safe:group-hover:[animation-play-state:paused] motion-safe:data-[playing=true]:animate-[spin_2.4s_linear_infinite]"
+        widths={[96, 144, 192]}
+        sizes="6rem"
+        loading="lazy"
+        decoding="async"
+        data-retro-vinyl
+        data-playing="false"
+      />
+      <span
+        class="absolute grid h-11 w-11 place-items-center rounded-full text-center font-copy text-[0.5rem] leading-none font-normal text-ink uppercase"
+      >
+        Alma<br />Hits
+      </span>
+    </span>
+    <span
+      class="font-countdown-heading text-xs leading-none font-extrabold tracking-[0.2em] text-groove-mauve uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
+      data-retro-open-label
+    >
+      Play me!
+    </span>
+  </button>
+
+  <div
+    class="pointer-events-auto hidden w-[min(25rem,calc(100vw-2rem))] overflow-hidden rounded-[1.35rem] border-2 border-groove-teal/70 bg-[#090b16]/95 p-3 shadow-[0_0_0_1px_rgba(108,168,173,0.18),0_18px_50px_rgba(0,0,0,0.56)] backdrop-blur-md"
+    data-retro-panel
+  >
+    <div
+      class="rounded-[1rem] border border-groove-mauve/45 bg-[#11101b] p-3 shadow-[inset_0_0_24px_rgba(255,255,255,0.05)]"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="grid h-14 w-14 shrink-0 place-items-center rounded-full border-4 border-groove-orange/80 bg-[repeating-radial-gradient(circle,#080913_0_4px,#17182a_5px_7px,#080913_8px_10px)] shadow-[0_0_18px_rgba(231,121,67,0.32)] motion-safe:data-[playing=true]:animate-[spin_2.4s_linear_infinite]"
+          data-retro-deck-vinyl
+          data-playing="false"
+        >
+          <div
+            class="grid h-6 w-6 place-items-center rounded-full border border-invitation-cream/70 bg-groove-orange text-xs text-ink"
+          >
+            ♪
+          </div>
+        </div>
+
+        <div class="min-w-0 flex-1">
+          <p
+            id="retro-player-heading"
+            class="font-countdown-heading text-sm leading-none font-extrabold tracking-[0.24em] text-groove-mauve uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
+          >
+            Disco Deck
+          </p>
+          <p class="mt-2 truncate font-copy text-base leading-tight text-invitation-cream" data-retro-track-title>
+            {playlist[0].title}
+          </p>
+          <p class="truncate font-copy text-sm leading-tight text-groove-teal" data-retro-track-artist>
+            {playlist[0].artist}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="shrink-0 rounded-full border border-invitation-cream/25 bg-page/70 px-3 py-2 font-copy text-xs leading-none font-normal tracking-[0.12em] text-invitation-cream uppercase transition-[color,transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-pulse/45 hover:text-pulse hover:shadow-[0_0_14px_rgba(255,107,122,0.28)] focus-visible:-translate-y-0.5 focus-visible:border-pulse/45 focus-visible:text-pulse focus-visible:shadow-[0_0_14px_rgba(255,107,122,0.28)]"
+          aria-label="Minimize music player"
+          data-retro-close
+        >
+          Minimize
+        </button>
+      </div>
+
+      <div class="mt-3 grid grid-cols-[auto_1fr_auto] items-center gap-3">
+        <button
+          type="button"
+          class="grid h-10 w-10 place-items-center rounded-full border border-groove-teal/75 bg-groove-teal/25 font-copy text-xl leading-none text-invitation-cream transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-0.5 hover:bg-groove-teal/45 hover:shadow-[0_0_16px_rgba(108,168,173,0.35)] focus-visible:-translate-y-0.5 focus-visible:bg-groove-teal/45 focus-visible:shadow-[0_0_16px_rgba(108,168,173,0.35)]"
+          aria-label="Previous song"
+          data-retro-prev
+        >
+          ‹
+        </button>
+
+        <button
+          type="button"
+          class="h-11 rounded-full border border-pulse/80 bg-pulse px-5 font-copy text-base leading-none font-normal tracking-[0.12em] text-invitation-cream uppercase shadow-[0_0_18px_rgba(255,107,122,0.38)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(255,107,122,0.58)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_24px_rgba(255,107,122,0.58)]"
+          data-retro-play
+        >
+          Play
+        </button>
+
+        <button
+          type="button"
+          class="grid h-10 w-10 place-items-center rounded-full border border-groove-teal/75 bg-groove-teal/25 font-copy text-xl leading-none text-invitation-cream transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-0.5 hover:bg-groove-teal/45 hover:shadow-[0_0_16px_rgba(108,168,173,0.35)] focus-visible:-translate-y-0.5 focus-visible:bg-groove-teal/45 focus-visible:shadow-[0_0_16px_rgba(108,168,173,0.35)]"
+          aria-label="Next song"
+          data-retro-next
+        >
+          ›
+        </button>
+      </div>
+
+      <div class="mt-3 grid grid-cols-[3rem_1fr_3rem] items-center gap-2 font-copy text-xs text-invitation-cream/80">
+        <span data-retro-current>0:00</span>
+        <input
+          class="h-2 w-full accent-pulse"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          aria-label="Track progress"
+          data-retro-progress
+        />
+        <span class="text-right" data-retro-duration>0:00</span>
+      </div>
+
+      <p class="mt-2 font-copy text-xs leading-tight text-groove-orange" data-retro-status>
+        Tap the vinyl to start the party mix.
+      </p>
+
+      <div class="mt-3 grid gap-1" aria-label="Playlist">
+        {
+          playlist.map((track, index) => (
+            <button
+              type="button"
+              class="rounded-lg border border-transparent px-3 py-2 text-left font-copy text-sm leading-tight text-invitation-cream/80 transition-[color,transform,background-color,border-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-groove-teal/45 hover:bg-groove-teal/10 hover:text-invitation-cream hover:shadow-[0_0_14px_rgba(108,168,173,0.16)] focus-visible:-translate-y-0.5 focus-visible:border-groove-teal/45 focus-visible:bg-groove-teal/10 focus-visible:text-invitation-cream focus-visible:shadow-[0_0_14px_rgba(108,168,173,0.16)] data-[active=true]:border-pulse/55 data-[active=true]:bg-pulse/10 data-[active=true]:text-invitation-cream"
+              data-retro-track={index}
+              data-track-src={track.src}
+              data-track-title={track.title}
+              data-track-artist={track.artist}
+              data-active={index === 0 ? "true" : "false"}
+            >
+              <span class="text-groove-orange" data-retro-track-number>
+                {String(index + 1).padStart(2, "0")}
+              </span>{" "}
+              {track.title}
+            </button>
+          ))
+        }
+      </div>
+
+      <audio preload="auto" data-retro-audio></audio>
+    </div>
+  </div>
+
+  <script>
+    const player = document.querySelector("[data-retro-player]")
+
+    const formatTime = (seconds: number) => {
+      if (!Number.isFinite(seconds)) return "0:00"
+
+      const minutes = Math.floor(seconds / 60)
+      const remainingSeconds = Math.floor(seconds % 60)
+
+      return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`
+    }
+
+    if (player instanceof HTMLElement) {
+      const audio = player.querySelector("[data-retro-audio]")
+      const openButton = player.querySelector("[data-retro-open]")
+      const openButtonLabel = player.querySelector("[data-retro-open-label]")
+      const vinyl = player.querySelector("[data-retro-vinyl]")
+      const deckVinyl = player.querySelector("[data-retro-deck-vinyl]")
+      const closeButton = player.querySelector("[data-retro-close]")
+      const panel = player.querySelector("[data-retro-panel]")
+      const playButton = player.querySelector("[data-retro-play]")
+      const prevButton = player.querySelector("[data-retro-prev]")
+      const nextButton = player.querySelector("[data-retro-next]")
+      const title = player.querySelector("[data-retro-track-title]")
+      const artist = player.querySelector("[data-retro-track-artist]")
+      const status = player.querySelector("[data-retro-status]")
+      const currentTime = player.querySelector("[data-retro-current]")
+      const duration = player.querySelector("[data-retro-duration]")
+      const progress = player.querySelector("[data-retro-progress]")
+      const trackButtons = Array.from(player.querySelectorAll("[data-retro-track]"))
+      const playlistElement = trackButtons[0]?.parentElement
+
+      let activeTrack = 0
+      let previousScrollY = window.scrollY
+      let upwardScrollDistance = 0
+
+      const setStatus = (message: string) => {
+        if (status) status.textContent = message
+      }
+
+      const setOpenState = (isOpen: boolean) => {
+        player.setAttribute("data-open", isOpen ? "true" : "false")
+        if (openButton instanceof HTMLElement) openButton.hidden = isOpen
+        if (openButton instanceof HTMLButtonElement) openButton.setAttribute("aria-expanded", String(isOpen))
+        if (panel instanceof HTMLElement) panel.hidden = !isOpen
+        panel?.classList.toggle("hidden", !isOpen)
+        upwardScrollDistance = 0
+        previousScrollY = window.scrollY
+      }
+
+      const updateActiveTrack = () => {
+        trackButtons.forEach((button, index) => {
+          button.setAttribute("data-active", index === activeTrack ? "true" : "false")
+          button.querySelector("[data-retro-track-number]")?.replaceChildren(String(index + 1).padStart(2, "0"))
+        })
+      }
+
+      const shufflePlaylist = () => {
+        for (let index = trackButtons.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1))
+          const currentTrack = trackButtons[index]
+          trackButtons[index] = trackButtons[randomIndex]
+          trackButtons[randomIndex] = currentTrack
+        }
+
+        trackButtons.forEach((button) => playlistElement?.append(button))
+      }
+
+      const loadTrack = (index: number) => {
+        if (!(audio instanceof HTMLAudioElement)) return
+
+        const track = trackButtons[index]
+        if (!(track instanceof HTMLElement)) return
+
+        activeTrack = index
+        audio.src = track.dataset.trackSrc || ""
+        if (title) title.textContent = track.dataset.trackTitle || ""
+        if (artist) artist.textContent = track.dataset.trackArtist || ""
+        updateActiveTrack()
+      }
+
+      const setPlayingState = (isPlaying: boolean) => {
+        if (playButton) playButton.textContent = isPlaying ? "Pause" : "Play"
+        if (openButtonLabel) openButtonLabel.textContent = isPlaying ? "Pause music" : "Play me!"
+        if (vinyl instanceof HTMLElement) vinyl.dataset.playing = String(isPlaying)
+        if (deckVinyl instanceof HTMLElement) deckVinyl.dataset.playing = String(isPlaying)
+        setStatus(isPlaying ? "Now playing." : "Paused.")
+      }
+
+      const collapseAfterUpwardScroll = () => {
+        if (player.dataset.open !== "true") {
+          previousScrollY = window.scrollY
+          upwardScrollDistance = 0
+          return
+        }
+
+        const currentScrollY = window.scrollY
+        const delta = previousScrollY - currentScrollY
+        previousScrollY = currentScrollY
+
+        if (delta > 0) upwardScrollDistance += delta
+        else if (delta < 0) upwardScrollDistance = 0
+
+        if (upwardScrollDistance >= window.innerHeight * 0.2) setOpenState(false)
+      }
+
+      const playAudio = async () => {
+        if (!(audio instanceof HTMLAudioElement)) return
+
+        try {
+          audio.volume = 0.72
+          await audio.play()
+          setPlayingState(true)
+        } catch {
+          setPlayingState(false)
+          setStatus("Tap Play to start the party mix.")
+        }
+      }
+
+      const playTrack = (index: number) => {
+        loadTrack((index + trackButtons.length) % trackButtons.length)
+        void playAudio()
+      }
+
+      if (audio instanceof HTMLAudioElement) {
+        setOpenState(false)
+        shufflePlaylist()
+        loadTrack(0)
+
+        openButton?.addEventListener("click", () => {
+          setOpenState(true)
+          void playAudio()
+        })
+
+        closeButton?.addEventListener("click", () => {
+          setOpenState(false)
+        })
+
+        playButton?.addEventListener("click", () => {
+          if (audio.paused) void playAudio()
+          else audio.pause()
+        })
+
+        prevButton?.addEventListener("click", () => playTrack(activeTrack - 1))
+        nextButton?.addEventListener("click", () => playTrack(activeTrack + 1))
+
+        trackButtons.forEach((button, index) => {
+          button.addEventListener("click", () => playTrack(index))
+        })
+
+        audio.addEventListener("play", () => setPlayingState(true))
+        audio.addEventListener("pause", () => setPlayingState(false))
+        audio.addEventListener("ended", () => playTrack(activeTrack + 1))
+        window.addEventListener("scroll", collapseAfterUpwardScroll, { passive: true })
+        audio.addEventListener("loadedmetadata", () => {
+          if (duration) duration.textContent = formatTime(audio.duration)
+        })
+        audio.addEventListener("timeupdate", () => {
+          if (currentTime) currentTime.textContent = formatTime(audio.currentTime)
+          if (progress instanceof HTMLInputElement && Number.isFinite(audio.duration) && audio.duration > 0) {
+            progress.value = String((audio.currentTime / audio.duration) * 100)
+          }
+        })
+
+        progress?.addEventListener("input", () => {
+          if (!(progress instanceof HTMLInputElement) || !Number.isFinite(audio.duration)) return
+
+          audio.currentTime = (Number(progress.value) / 100) * audio.duration
+        })
+
+        setStatus("Tap the vinyl to start the party mix.")
+      }
+    }
+  </script>
+</aside>

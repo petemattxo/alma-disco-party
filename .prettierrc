@@ -1,0 +1,35 @@
+{
+  "endOfLine": "lf",
+  "semi": false,
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "src/styles/global.css",
+  "tailwindFunctions": ["cn", "cva"],
+  "importOrder": [
+    "^(node:|astro:|@astrojs|react|@remix|@?react-router|vite)",
+    "<THIRD_PARTY_MODULES>",
+    "^~/",
+    "^@/",
+    "^\\.(\\.)?/"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "options": {
+        "parser": "typescript"
+      }
+    }
+  ]
+}

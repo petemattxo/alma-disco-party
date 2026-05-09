@@ -1,0 +1,41 @@
+:root {
+  /* Semantic spacing tokens */
+  --site-padding: 1rem; /* 16px */
+  --site-gutter: 1rem; /* 16px */
+  --section-padding-none: 0rem;
+  --section-padding-small: 1rem; /* 16px */
+  --section-padding-main: 2.5rem; /* 40px */
+  --section-padding-large: 5rem; /* 80px */
+  --section-space-none: 0rem;
+  --section-space-small: 3rem; /* 48px */
+  --section-space-main: 4rem; /* 64px */
+  --section-space-large: 5.5rem; /* 88px */
+
+  --section-width: 67.5rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    /* Larger semantic spacing */
+    --site-padding: 2rem; /* 32px */
+    --site-gutter: 1.5rem; /* 24px */
+    --section-padding-small: 1.5rem; /* 24px */
+    --section-padding-main: 5rem; /* 80px */
+    --section-padding-large: 7.5rem; /* 120px */
+    --section-space-small: 4rem; /* 64px */
+    --section-space-main: 7rem; /* 112px */
+    --section-space-large: 10rem; /* 160px */
+  }
+}
+
+@theme inline {
+  --spacing-site-padding: var(--site-padding);
+  --spacing-site-gutter: var(--site-gutter);
+
+  --spacing-section-padding-sm: var(--section-padding-small);
+  --spacing-section-padding-main: var(--section-padding-main);
+  --spacing-section-padding-lg: var(--section-padding-large);
+  --spacing-section-space-sm: var(--section-space-small);
+  --spacing-section-space-main: var(--section-space-main);
+  --spacing-section-space-lg: var(--section-space-large);
+}

@@ -1,0 +1,171 @@
+---
+import discoIcon from "@/assets/outfit/disco.png?url"
+import moneyBagIcon from "@/assets/icons/money_bag_icon.svg?url"
+import outfitPopupImage from "@/assets/outfit/outfit-popup.png?url"
+import pantsIcon from "@/assets/outfit/pants.png?url"
+import shadesIcon from "@/assets/outfit/shades.png?url"
+import shoesIcon from "@/assets/outfit/shoes.png?url"
+import AppSection from "@/layouts/app-section.astro"
+
+const outfitItems = [
+  {
+    icon: shadesIcon,
+    title: "Neon Touches",
+    description: "Bright accents and bold colors",
+    card: "bg-[#2c1f44] border-groove-mauve/90",
+    glow: "shadow-[0_0_24px_rgba(163,91,147,0.34)]",
+    iconClass: "h-20 w-auto sm:h-24",
+  },
+  {
+    icon: discoIcon,
+    title: "Sparkle & Shine",
+    description: "Sequins, glitter and shimmer",
+    card: "bg-groove-teal border-cyan/70",
+    glow: "shadow-[0_0_24px_rgba(108,168,173,0.34)]",
+    iconClass: "h-20 w-auto sm:h-24",
+  },
+  {
+    icon: pantsIcon,
+    title: "Groovy Styles",
+    description: "Bell bottoms, wraps & prints",
+    card: "bg-pulse border-groove-orange/80",
+    glow: "shadow-[0_0_24px_rgba(255,107,122,0.3)]",
+    iconClass: "h-20 w-auto sm:h-24",
+  },
+  {
+    icon: shoesIcon,
+    title: "Comfy & Cool",
+    description: "Comfortable and retro shoes",
+    card: "bg-[#2c1f44] border-groove-mauve/90",
+    glow: "shadow-[0_0_24px_rgba(163,91,147,0.34)]",
+    iconClass: "h-20 w-auto sm:h-24",
+  },
+]
+---
+
+<AppSection sectionId="outfit" wrapperClass="overflow-hidden bg-page" class="py-12 lg:py-16">
+  <div class="mb-2 flex items-center gap-5 text-groove-mauve sm:gap-7">
+    <span
+      class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
+      aria-hidden="true"
+      data-parallax="0.7">✦</span
+    >
+    <div class="h-px min-w-8 flex-1 bg-groove-mauve/70 shadow-[0_0_10px_rgba(163,91,147,0.42)]"></div>
+    <h2
+      class="text-center font-countdown-heading text-[clamp(1.15rem,2.25vw,2.05rem)] leading-none font-extrabold tracking-[0.32em] text-groove-mauve uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.9),0_0_10px_rgba(163,91,147,0.58)]"
+      data-parallax="0.4"
+    >
+      Outfit Guide
+    </h2>
+    <div class="h-px min-w-8 flex-1 bg-groove-mauve/70 shadow-[0_0_10px_rgba(163,91,147,0.42)]"></div>
+    <span
+      class="text-2xl text-pulse [text-shadow:0_0_12px_rgba(255,107,122,0.72)]"
+      aria-hidden="true"
+      data-parallax="0.7">✦</span
+    >
+  </div>
+
+  <div class="mb-5 text-center">
+    <p
+      class="font-copy text-[clamp(0.95rem,1.35vw,1.25rem)] leading-tight font-normal text-invitation-cream/85 [text-shadow:0_2px_0_rgba(8,9,13,0.9)]"
+    >
+      Come dressed for the dance floor!
+    </p>
+    <p
+      class="mt-2 inline-flex items-center justify-center gap-3 font-copy text-[clamp(0.95rem,1.4vw,1.35rem)] leading-tight font-normal text-groove-orange [text-shadow:0_2px_0_rgba(8,9,13,0.9),0_0_10px_rgba(231,121,67,0.32)]"
+    >
+      <img
+        src={moneyBagIcon}
+        alt=""
+        aria-hidden="true"
+        class="h-7 w-7 object-contain sm:h-8 sm:w-8"
+        data-parallax="0.75"
+      />
+      <span>Best 3 outfits win cash prizes</span>
+      <img
+        src={moneyBagIcon}
+        alt=""
+        aria-hidden="true"
+        class="h-7 w-7 object-contain sm:h-8 sm:w-8"
+        data-parallax="0.75"
+      />
+    </p>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    {
+      outfitItems.map((item) => (
+        <article class={`rounded-xl border-2 ${item.card} p-1 ${item.glow}`}>
+          <div class="flex min-h-[14.25rem] flex-col items-center justify-center rounded-lg border border-ink/45 px-4 py-5 text-center shadow-[inset_0_0_18px_rgba(255,255,255,0.08),inset_0_-16px_28px_rgba(8,9,13,0.18)]">
+            <img
+              src={item.icon}
+              alt=""
+              aria-hidden="true"
+              class={`${item.iconClass} mb-4 object-contain drop-shadow-[0_8px_10px_rgba(8,9,13,0.35)]`}
+              data-parallax="0.75"
+            />
+            <h3 class="font-countdown-heading text-[clamp(1rem,1.45vw,1.22rem)] leading-none font-extrabold tracking-[0.08em] text-invitation-cream uppercase [text-shadow:0_2px_0_rgba(8,9,13,0.255)]">
+              {item.title}
+            </h3>
+            <p class="mt-3 max-w-[11rem] font-copy text-[clamp(0.95rem,1.25vw,1.12rem)] leading-[1.22] font-normal text-invitation-cream [text-shadow:0_2px_0_rgba(8,9,13,0.216)]">
+              {item.description}
+            </p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="mt-7 text-center">
+    <button
+      type="button"
+      class="inline-flex cursor-pointer items-center justify-center gap-3 rounded-full border border-groove-orange/80 bg-groove-orange/18 px-6 py-3 font-countdown-heading text-[clamp(0.85rem,1.15vw,1.05rem)] leading-none font-extrabold tracking-[0.18em] text-invitation-cream uppercase shadow-[0_0_16px_rgba(231,121,67,0.18),inset_0_0_0_1px_rgba(253,239,206,0.14)] transition-[transform,box-shadow,background-color,color] duration-200 hover:-translate-y-0.5 hover:bg-groove-orange hover:text-ink hover:shadow-[0_0_22px_rgba(231,121,67,0.34),inset_0_0_0_1px_rgba(253,239,206,0.24)] focus-visible:-translate-y-0.5 focus-visible:bg-groove-orange focus-visible:text-ink focus-visible:shadow-[0_0_22px_rgba(231,121,67,0.34),inset_0_0_0_1px_rgba(253,239,206,0.24)]"
+      data-outfit-modal-open
+    >
+      <span aria-hidden="true">✦</span>
+      View Outfit Ideas
+    </button>
+  </div>
+
+  <dialog
+    class="m-auto max-h-[92svh] w-[min(92vw,62rem)] rounded-[1.35rem] border border-groove-mauve/70 bg-[#0a0b16] p-2 text-event-primary shadow-[0_24px_80px_rgba(0,0,0,0.72)] backdrop:bg-page/80 backdrop:backdrop-blur-sm"
+    data-outfit-modal
+    aria-label="Outfit inspiration mood board"
+  >
+    <div class="relative overflow-hidden rounded-[1rem] border border-groove-mauve/45 bg-page">
+      <button
+        type="button"
+        class="absolute top-3 right-3 z-10 grid h-10 w-10 place-items-center rounded-full border border-invitation-cream/35 bg-page/80 font-copy text-2xl leading-none text-invitation-cream shadow-[0_6px_18px_rgba(0,0,0,0.35)] transition-[color,transform,box-shadow] duration-200 hover:scale-110 hover:text-groove-orange hover:shadow-[0_0_18px_rgba(231,121,67,0.34)] focus-visible:scale-110 focus-visible:text-groove-orange focus-visible:shadow-[0_0_18px_rgba(231,121,67,0.34)]"
+        data-outfit-modal-close
+        aria-label="Close outfit inspirations"
+      >
+        ×
+      </button>
+      <img
+        src={outfitPopupImage}
+        alt="Alma's 60th disco outfit mood board with guest outfit ideas including wrap dress, jumpsuit, sequin top, retro print, velvet blazer, retro shirt, shimmer dress, and smart retro looks."
+        class="h-auto max-h-[88svh] w-full object-contain"
+      />
+    </div>
+  </dialog>
+</AppSection>
+
+<script>
+  const outfitModal = document.querySelector("[data-outfit-modal]")
+  const outfitModalOpen = document.querySelector("[data-outfit-modal-open]")
+  const outfitModalClose = document.querySelector("[data-outfit-modal-close]")
+
+  if (outfitModal instanceof HTMLDialogElement) {
+    outfitModalOpen?.addEventListener("click", () => {
+      outfitModal.showModal()
+    })
+
+    outfitModalClose?.addEventListener("click", () => {
+      outfitModal.close()
+    })
+
+    outfitModal.addEventListener("click", (event) => {
+      if (event.target === outfitModal) outfitModal.close()
+    })
+  }
+</script>

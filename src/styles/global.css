@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./tokens/index.css";
+@import "./shadcn.css";
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-size: 1rem;
+    scrollbar-gutter: stable;
+    overscroll-behavior: none;
+
+    @apply scroll-smooth bg-background font-sans antialiased;
+  }
+
+  body {
+    @apply grid min-h-svh grid-rows-[1fr_auto] bg-page text-foreground;
+    font-weight: var(--font-weight-body);
+  }
+
+  ::selection {
+    @apply bg-champagne text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-focus;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    @apply font-sans;
+  }
+}
+
+@layer components {
+  .global-sparkle-field {
+    @apply pointer-events-none fixed inset-0 z-[1] overflow-hidden;
+  }
+
+  .global-sparkle {
+    position: absolute;
+    top: var(--sparkle-y);
+    left: var(--sparkle-x);
+    color: var(--sparkle-color);
+    font-size: var(--sparkle-size);
+    line-height: 1;
+    opacity: 0;
+    text-shadow: 0 0 12px currentColor;
+    transform: translate(-50%, -50%) scale(0.35) rotate(var(--sparkle-rotate));
+    animation: global-sparkle-twinkle var(--sparkle-duration) ease-in-out forwards;
+  }
+
+  [data-parallax] {
+    --parallax-x: 0px;
+    --parallax-y: 0px;
+    transform: translate3d(var(--parallax-x), var(--parallax-y), 0);
+    will-change: transform;
+  }
+
+  span[data-parallax] {
+    display: inline-block;
+  }
+}
+
+@keyframes global-sparkle-twinkle {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25) rotate(var(--sparkle-rotate));
+  }
+
+  32% {
+    opacity: 0.78;
+    transform: translate(-50%, -50%) scale(1) rotate(calc(var(--sparkle-rotate) + 18deg));
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.55) rotate(calc(var(--sparkle-rotate) + 40deg));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  [data-parallax] {
+    transform: none !important;
+  }
+
+  .global-sparkle-field {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .section-container {
+    @apply mx-auto w-full max-w-(--section-width);
+  }
+}
