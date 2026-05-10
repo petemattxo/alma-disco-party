@@ -212,6 +212,8 @@ const playlist = [
       let activeTrack = 0
       let previousScrollY = window.scrollY
       let upwardScrollDistance = 0
+      let isFooterVisible = false
+      const mobilePlayerQuery = window.matchMedia("(max-width: 639.98px)")
 
       const setStatus = (message: string) => {
         if (status) status.textContent = message
@@ -283,6 +285,11 @@ const playlist = [
         if (upwardScrollDistance >= window.innerHeight * 0.2) setOpenState(false)
       }
 
+      const updateFooterVisibility = () => {
+        player.hidden = mobilePlayerQuery.matches && isFooterVisible
+        if (player.hidden) setOpenState(false)
+      }
+
       const playAudio = async () => {
         if (!(audio instanceof HTMLAudioElement)) return
 
@@ -331,6 +338,7 @@ const playlist = [
         audio.addEventListener("pause", () => setPlayingState(false))
         audio.addEventListener("ended", () => playTrack(activeTrack + 1))
         window.addEventListener("scroll", collapseAfterUpwardScroll, { passive: true })
+        mobilePlayerQuery.addEventListener("change", updateFooterVisibility)
         audio.addEventListener("loadedmetadata", () => {
           if (duration) duration.textContent = formatTime(audio.duration)
         })
@@ -348,6 +356,19 @@ const playlist = [
         })
 
         setStatus("Tap the vinyl to start the party mix.")
+
+        const footer = document.querySelector("footer")
+        if (footer instanceof HTMLElement && "IntersectionObserver" in window) {
+          const footerObserver = new IntersectionObserver(
+            (entries) => {
+              isFooterVisible = entries.some((entry) => entry.isIntersecting)
+              updateFooterVisibility()
+            },
+            { threshold: 0.05 },
+          )
+
+          footerObserver.observe(footer)
+        }
       }
     }
   </script>

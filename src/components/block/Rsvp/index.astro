@@ -168,27 +168,33 @@ const partyNotes = [
       >
         <div class="mx-auto max-w-[40rem]">
           <p
-            class="mb-5 inline-flex items-center justify-center rounded-full border border-champagne/55 bg-champagne/12 px-5 py-2 font-countdown-heading text-xs leading-none font-extrabold tracking-[0.32em] text-champagne uppercase shadow-[0_0_18px_rgba(246,201,107,0.18)]"
+            class="mb-4 inline-flex items-center justify-center rounded-full border border-champagne/55 bg-champagne/12 px-5 py-2 font-countdown-heading text-xs leading-none font-extrabold tracking-[0.32em] text-champagne uppercase shadow-[0_0_18px_rgba(246,201,107,0.18)]"
           >
             RSVP Confirmed
           </p>
-          <div class="mb-5 flex items-center justify-center gap-4 text-pulse" aria-hidden="true">
+          <div class="mb-4 flex items-center justify-center gap-4 text-pulse" aria-hidden="true">
             <span class="h-px w-14 bg-pulse/65 shadow-[0_0_10px_rgba(255,107,122,0.48)]"></span>
             <span class="text-2xl [text-shadow:0_0_14px_rgba(255,107,122,0.68)]">✦</span>
             <span class="h-px w-14 bg-pulse/65 shadow-[0_0_10px_rgba(255,107,122,0.48)]"></span>
           </div>
           <p
-            class="font-rsvp text-[clamp(3rem,7vw,6.4rem)] leading-none font-normal tracking-[0.06em] text-groove-coral uppercase [text-shadow:0_4px_0_rgba(8,9,13,0.95),0_0_18px_rgba(223,92,99,0.44)]"
+            class="font-rsvp text-[clamp(2.7rem,6.2vw,5.75rem)] leading-none font-normal tracking-[0.06em] text-groove-coral uppercase [text-shadow:0_4px_0_rgba(8,9,13,0.95),0_0_18px_rgba(223,92,99,0.44)]"
           >
             Thank You
           </p>
           <p
-            class="mx-auto mt-6 max-w-[34rem] font-countdown-heading text-[clamp(1.45rem,3vw,2.8rem)] leading-tight font-extrabold tracking-[0.04em] text-invitation-cream"
+            class="mx-auto mt-4 max-w-[34rem] font-countdown-heading text-[clamp(1.25rem,2.55vw,2.35rem)] leading-tight font-extrabold tracking-[0.04em] text-invitation-cream"
           >
             and see you at the dancefloor!
           </p>
+          <p
+            class="mx-auto mt-3 max-w-[28rem] font-copy text-[clamp(0.92rem,1.25vw,1.12rem)] leading-tight font-normal text-champagne [text-shadow:0_2px_0_rgba(8,9,13,0.85)]"
+          >
+            We&rsquo;ve reserved <span class="font-extrabold text-invitation-cream" data-rsvp-seat-count>0</span>
+            <span data-rsvp-seat-label>seats</span> for you.
+          </p>
           <div
-            class="mx-auto mt-8 flex w-fit items-center gap-3 rounded-full border border-groove-teal/45 bg-groove-teal/10 px-5 py-3 font-copy text-sm leading-none tracking-[0.18em] text-groove-teal uppercase shadow-[0_0_18px_rgba(108,168,173,0.16)]"
+            class="mx-auto mt-6 flex w-fit items-center gap-3 rounded-full border border-groove-teal/45 bg-groove-teal/10 px-5 py-3 font-copy text-sm leading-none tracking-[0.18em] text-groove-teal uppercase shadow-[0_0_18px_rgba(108,168,173,0.16)]"
           >
             <span aria-hidden="true">✦</span>
             Get ready to groove
@@ -297,6 +303,8 @@ const partyNotes = [
   const rsvpSubmit = document.querySelector("[data-rsvp-submit]")
   const rsvpSubmitLabel = document.querySelector("[data-rsvp-submit-label]")
   const rsvpError = document.querySelector("[data-rsvp-error]")
+  const rsvpSeatCount = document.querySelector("[data-rsvp-seat-count]")
+  const rsvpSeatLabel = document.querySelector("[data-rsvp-seat-label]")
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
   const isPhilippineMobileNumber = (value: string) => {
@@ -416,6 +424,7 @@ const partyNotes = [
 
       const formData = new FormData(rsvpForm)
       const isAttending = formData.get("attending") === "yes"
+      const guests = Number(formData.get("guests")) || 1
 
       setSubmitState(true)
 
@@ -443,6 +452,8 @@ const partyNotes = [
       }
 
       if (isAttending) {
+        if (rsvpSeatCount) rsvpSeatCount.textContent = String(guests)
+        if (rsvpSeatLabel) rsvpSeatLabel.textContent = guests === 1 ? "seat" : "seats"
         showRsvpMessage(rsvpSuccess)
         launchConfetti()
         return

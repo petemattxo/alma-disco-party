@@ -11,9 +11,9 @@ const navItems = [
 ---
 
 <header
-  class="pointer-events-none fixed inset-x-0 top-0 z-50 border-b border-invitation-cream/10 bg-page/65 px-site-padding text-event-secondary shadow-[0_10px_30px_rgba(0,0,0,0.22)] backdrop-blur-md"
+  class="pointer-events-none fixed inset-x-0 top-0 z-50 border-b border-invitation-cream/10 bg-page/65 px-3 text-event-secondary shadow-[0_10px_30px_rgba(0,0,0,0.22)] backdrop-blur-md sm:px-site-padding"
 >
-  <div class="section-container flex w-full items-center justify-between py-2">
+  <div class="section-container flex w-full items-center justify-between gap-2 py-1.5 sm:py-2">
     <a
       href="/"
       class="pointer-events-auto relative shrink-0 transition-transform duration-200 hover:scale-105 focus-visible:scale-105 focus-visible:rounded-full"
@@ -29,14 +29,14 @@ const navItems = [
       <Image
         src={almaLogo}
         alt="Alma"
-        class="relative z-10 h-16 w-16 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(0,0,0,0.38)] sm:size-16"
+        class="relative z-10 h-12 w-12 rounded-full object-cover drop-shadow-[0_8px_18px_rgba(0,0,0,0.38)] sm:size-16"
         loading="eager"
         decoding="async"
       />
     </a>
 
     <nav
-      class="pointer-events-auto flex flex-wrap items-center justify-end gap-x-5 gap-y-3 sm:gap-x-8"
+      class="pointer-events-auto flex flex-nowrap items-center justify-end gap-x-3 sm:gap-x-8"
       aria-label="Primary navigation"
     >
       {
@@ -44,7 +44,7 @@ const navItems = [
           <>
             <a
               href={item.href}
-              class="inline-block font-heading text-label font-extrabold tracking-[0.24em] text-event-secondary uppercase transition-[color,transform,text-shadow] duration-200 hover:-translate-y-0.5 hover:text-pulse hover:[text-shadow:0_0_14px_rgba(255,107,122,0.62)] focus-visible:-translate-y-0.5 focus-visible:text-cyan focus-visible:[text-shadow:0_0_14px_rgba(108,168,173,0.62)]"
+              class="inline-block font-heading text-[0.68rem] leading-none font-extrabold tracking-[0.14em] text-event-secondary uppercase transition-[color,transform,text-shadow] duration-200 hover:-translate-y-0.5 hover:text-pulse hover:[text-shadow:0_0_14px_rgba(255,107,122,0.62)] focus-visible:-translate-y-0.5 focus-visible:text-cyan focus-visible:[text-shadow:0_0_14px_rgba(108,168,173,0.62)] sm:text-label sm:tracking-[0.24em]"
             >
               {item.label}
             </a>
@@ -58,7 +58,7 @@ const navItems = [
       }
       <a
         href="#rsvp"
-        class="inline-flex h-10 items-center justify-center rounded-full border border-pulse/80 bg-pulse px-5 font-heading text-label font-extrabold tracking-[0.24em] text-invitation-cream uppercase shadow-[0_0_18px_rgba(255,107,122,0.084),inset_0_0_0_1px_rgba(253,239,206,0.18)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(255,107,122,0.124),inset_0_0_0_1px_rgba(253,239,206,0.28)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_26px_rgba(255,107,122,0.124),inset_0_0_0_1px_rgba(253,239,206,0.28)]"
+        class="inline-flex h-9 items-center justify-center rounded-full border border-pulse/80 bg-pulse px-3 font-heading text-[0.68rem] leading-none font-extrabold tracking-[0.16em] text-invitation-cream uppercase shadow-[0_0_18px_rgba(255,107,122,0.084),inset_0_0_0_1px_rgba(253,239,206,0.18)] transition-[transform,box-shadow,filter] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_26px_rgba(255,107,122,0.124),inset_0_0_0_1px_rgba(253,239,206,0.28)] hover:brightness-110 focus-visible:-translate-y-0.5 focus-visible:shadow-[0_0_26px_rgba(255,107,122,0.124),inset_0_0_0_1px_rgba(253,239,206,0.28)] sm:h-10 sm:px-5 sm:text-label sm:tracking-[0.24em]"
       >
         RSVP
       </a>
