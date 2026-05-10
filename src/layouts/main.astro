@@ -5,8 +5,18 @@ import "@/styles/global.css"
 
 const metaTitle = "Alma’s 60th Disco Party"
 const metaDescription =
-  "You’re invited to celebrate Alma’s 60th birthday on April 25, 2026 at 4:00 PM. Join us for a night of food, music, dancing, and retro disco fun."
-const metaImage = "/og-image.jpg"
+  "You’re invited to celebrate Alma’s 60th birthday on June 3, 2026 at 5:30 PM. Join us for a night of food, music, dancing, and retro disco fun."
+const metaImagePath = "/og-image.jpg"
+const rawSiteUrl =
+  import.meta.env.PUBLIC_SITE_URL ||
+  Astro.site?.toString() ||
+  process.env.PUBLIC_SITE_URL ||
+  process.env.CF_PAGES_URL ||
+  process.env.URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined)
+const siteUrl = rawSiteUrl ? new URL(rawSiteUrl).origin : undefined
+const metaUrl = siteUrl ? new URL("/", siteUrl).toString() : "/"
+const metaImage = siteUrl ? new URL(metaImagePath, siteUrl).toString() : metaImagePath
 ---
 
 <html lang="en">
@@ -24,16 +34,25 @@ const metaImage = "/og-image.jpg"
     <Font cssVariable="--font-montserrat" preload />
     <Font cssVariable="--font-limelight" preload />
     <link rel="icon" type="image/png" href="/alma-logo.png" />
+    <link rel="canonical" href={metaUrl} />
     <title>{metaTitle}</title>
     <meta name="description" content={metaDescription} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={metaUrl} />
+    <meta property="og:site_name" content={metaTitle} />
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:image" content={metaImage} />
+    <meta property="og:image:secure_url" content={metaImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1731" />
+    <meta property="og:image:height" content="909" />
+    <meta property="og:image:alt" content="Alma’s 60th Disco Party invitation preview" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={metaTitle} />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={metaImage} />
+    <meta name="twitter:image:alt" content="Alma’s 60th Disco Party invitation preview" />
   </head>
   <body>
     <div class="global-sparkle-field" data-global-sparkles aria-hidden="true"></div>

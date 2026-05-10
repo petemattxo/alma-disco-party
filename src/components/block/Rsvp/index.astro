@@ -305,7 +305,9 @@ const partyNotes = [
   const rsvpError = document.querySelector("[data-rsvp-error]")
   const rsvpSeatCount = document.querySelector("[data-rsvp-seat-count]")
   const rsvpSeatLabel = document.querySelector("[data-rsvp-seat-label]")
+  const rsvpSection = document.querySelector("#rsvp")
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+  const stackedRsvpLayout = window.matchMedia("(max-width: 1023.98px)")
 
   const isPhilippineMobileNumber = (value: string) => {
     const normalizedValue = value.replace(/[\s-]/g, "")
@@ -388,6 +390,21 @@ const partyNotes = [
     message.classList.add("grid")
   }
 
+  const scrollToRsvpSection = () => {
+    if (!stackedRsvpLayout.matches || !(rsvpSection instanceof HTMLElement)) return
+
+    window.requestAnimationFrame(() => {
+      const header = document.querySelector("header")
+      const headerHeight = header instanceof HTMLElement ? header.getBoundingClientRect().height : 0
+      const top = rsvpSection.getBoundingClientRect().top + window.scrollY - headerHeight - 12
+
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: reduceMotion.matches ? "auto" : "smooth",
+      })
+    })
+  }
+
   const setSubmitState = (isSubmitting: boolean) => {
     if (rsvpSubmit instanceof HTMLButtonElement) rsvpSubmit.disabled = isSubmitting
     if (rsvpSubmitLabel instanceof HTMLElement)
@@ -455,11 +472,13 @@ const partyNotes = [
         if (rsvpSeatCount) rsvpSeatCount.textContent = String(guests)
         if (rsvpSeatLabel) rsvpSeatLabel.textContent = guests === 1 ? "seat" : "seats"
         showRsvpMessage(rsvpSuccess)
+        scrollToRsvpSection()
         launchConfetti()
         return
       }
 
       showRsvpMessage(rsvpDecline)
+      scrollToRsvpSection()
     })
   }
 </script>

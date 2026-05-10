@@ -10,6 +10,7 @@ const compilerConfig = {
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://alma-disco-party.pages.dev",
   fonts: [
     {
       provider: fontProviders.google(),
